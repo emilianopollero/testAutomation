@@ -11,7 +11,7 @@ import org.testng.asserts.SoftAssert;
 
 import static SeleniumAutomation.BasePage.getTitleText;
 
-public class LoginTest extends BaseTest {
+public class LoginResponseTest extends BaseTest {
 
     private SoftAssert softAssert = new SoftAssert();
 
@@ -62,6 +62,18 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1)
+    public void logOutTest() {
+        System.out.println("This test verifies that the user can log out of the application");
+        Driver.getInstance().get("https://waesworks.bitbucket.io/");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
+        profilePage.clickLogout();
+        Assert.assertEquals("Log In", getTitleText());
+        System.out.println("User successfully logged out of the application");
+    }
+
 //    @Test(priority = 1)
 //    public void validUsernameInUppercaseLogin() {
 //        System.out.println("This test verifies that tester users can login using valid credentials and that the proper" +
@@ -84,7 +96,7 @@ public class LoginTest extends BaseTest {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         String[] cases = {"wrongUsername", "wrongPassword", "emptyUsername", "emptyPassword", "empty",
-                "caseSensitiveUsername", "caseSensitivePassword"};
+                "caseSensitiveUsername", "caseSensitivePassword", "whitespacesInUsername", "whitespacesInPassword"};
         for (String value : cases) {
             switch (value) {
                 case "wrongUsername":
@@ -125,6 +137,18 @@ public class LoginTest extends BaseTest {
                     break;
                 case "caseSensitiveUsername":
                     loginPage.logIn("ADMIN", "hero");
+                    System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Log In", getTitleText());
+                    softAssert.assertAll();
+                    break;
+                case "whitespacesInUsername":
+                    loginPage.logIn("admin ", "hero");
+                    System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Log In", getTitleText());
+                    softAssert.assertAll();
+                    break;
+                case "whitespacesInPassword":
+                    loginPage.logIn("admin", "hero ");
                     System.out.println("Validating that user has not been logged in");
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();

@@ -6,9 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 
 public class HomePage extends BasePage{
@@ -20,12 +17,9 @@ public class HomePage extends BasePage{
 
     public HomePage() {
         PageFactory.initElements(driver, this);
-        List<WebElement> requiredElements = new ArrayList<>();
-        requiredElements.add(loginLink);
-        requiredElements.add(signupLink);
-        loadPage(requiredElements);
         Assert.assertEquals(getTitleText(), "WAES Tester Assignment");
         Assert.assertTrue(driver.getCurrentUrl().contains("waesworks.bitbucket.io"));
+        System.out.println("Going to home page");
     }
 
     public LoginPage clickLogin(){

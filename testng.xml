@@ -9,12 +9,13 @@
     <test name="Regression1">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="SeleniumAutomation.SignUpTest">
+            <class name="SeleniumAutomation.ApiTest">
                 <!--<methods>-->
-                    <!--<include name="validateRequiredSignUpFields"/>-->
+                    <!--<include name="userInformationEndpointTest"/>-->
                 <!--</methods>-->
             </class>
-            <class name="SeleniumAutomation.LoginTest"/>
+            <!--<class name="SeleniumAutomation.LoginResponseTest"/>-->
+            <!--<class name="SeleniumAutomation.SignUpTest"/>-->
         </classes>
     </test>
 </suite>

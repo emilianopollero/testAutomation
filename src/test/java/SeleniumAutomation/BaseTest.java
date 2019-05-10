@@ -5,19 +5,20 @@ import SeleniumAutomation.Utils.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 public class BaseTest {
 
-    @BeforeClass
-    public void setup(){
-        Driver.init(System.getProperty("browser"));
-    }
-
 //    @BeforeClass
-//    @Parameters("browser")
-//    public void setup(String browser){
-//        Driver.init(browser);
+//    public void setup(){
+//        Driver.init(System.getProperty("browser"));
 //    }
+
+    @BeforeClass
+    @Parameters("browser")
+    public void setup(String browser){
+        Driver.init(browser);
+    }
 
     @BeforeMethod
     public void openBrowser () {
