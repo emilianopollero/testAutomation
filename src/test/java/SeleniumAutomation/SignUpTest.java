@@ -36,6 +36,7 @@ public class SignUpTest extends BaseTest {
                 "noMonth", "noYear"};
         for (String value : cases) {
             switch (value) {
+                // This case verifies that username is mandatory
                 case "noUsername":
                     signUpPage.signUp("", "123456", "Emiliano",
                             "test@test.com", "19", Month.JUNE, "1982");
@@ -44,6 +45,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no username was not registered");
                     break;
                 case "noPassword":
+                    // This case verifies that password is mandatory
                     signUpPage.signUp("emiliano.pollero", "", "Emiliano",
                             "test@test.com", "19", Month.JUNE, "1982");
                     System.out.println("Validating user has not been signed");
@@ -51,6 +53,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no password was not registered");
                     break;
                 case "noName":
+                    // This case verifies that name is mandatory
                     signUpPage.signUp("emiliano,pollero", "123456", "",
                             "test@test.com", "19", Month.JUNE, "1982");
                     System.out.println("Validating user has not been signed");
@@ -58,6 +61,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no name was not registered");
                     break;
                 case "noEmail":
+                    // This case verifies that email is mandatory
                     signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
                             "", "19", Month.JUNE, "1982");
                     System.out.println("Validating user has not been signed");
@@ -65,6 +69,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no email was not registered");
                     break;
                 case "noDay":
+                    // This case verifies that day is mandatory
                     signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
                             "test@test.com", "", Month.JUNE, "1982");
                     System.out.println("Validating user has not been signed");
@@ -72,6 +77,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no email was not registered");
                     break;
                 case "noMonth":
+                    // This case verifies that month is mandatory
                     signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
                             "test@test.com", "19", "", "1982");
                     System.out.println("Validating user has not been signed");
@@ -79,6 +85,7 @@ public class SignUpTest extends BaseTest {
                     System.out.println("User with no email was not registered");
                     break;
                 case "noYear":
+                    // This case verifies that year is mandatory
                     signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
                             "test@test.com", "19", Month.JUNE, "");
                     System.out.println("Validating user has not been signed");

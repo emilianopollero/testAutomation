@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
 public class ProfilePage extends BasePage {
@@ -16,6 +17,10 @@ public class ProfilePage extends BasePage {
     private WebElement secondProfileText;
     @FindBy(css = "#users_list_table")
     private WebElement adminUsersTable;
+    @FindBy(css = "#details_link")
+    private WebElement detailsLink;
+    @FindBy(linkText = "log out")
+    private WebElement logOutLink;
 
     public ProfilePage() {
         PageFactory.initElements(driver, this);
@@ -26,6 +31,12 @@ public class ProfilePage extends BasePage {
         return firstProfileText.getText();
     }
 
+    public LoginPage clickLogout(){
+        waitForElementToBeClickable(logOutLink);
+        logOutLink.click();
+        return new LoginPage();
+    }
+
     public String getSecondProfileText() {
         waitForElementToBeVisible(secondProfileText);
         return secondProfileText.getText();
@@ -33,5 +44,11 @@ public class ProfilePage extends BasePage {
 
     public boolean checkAdminTableIsDisplayed() {
         return adminUsersTable.isDisplayed();
+    }
+
+    public DetailsPage clickOnDetails(){
+        waitForElementToBeClickable(detailsLink);
+        detailsLink.click();
+        return new DetailsPage();
     }
 }
