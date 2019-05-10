@@ -24,11 +24,11 @@ public class Driver {
     private static WebDriver createDriver() {
         switch (browserName.toLowerCase()) {
             case "chrome": //CHROME DRIVER
-                System.setProperty("webdriver.chrome.driver", "\\testAutomation\\drivers\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "/testAutomation/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case "headless":
-                File file = new File("\\testAutomation\\drivers\\chromedriver.exe");
+                File file = new File("/testAutomation/drivers/chromedriver.exe");
                 String path = file.getAbsolutePath();
                 System.out.println(path);
                 System.setProperty("webdriver.chrome.driver", path);
