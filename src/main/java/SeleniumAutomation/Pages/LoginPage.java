@@ -1,10 +1,13 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
@@ -20,6 +23,13 @@ public class LoginPage extends BasePage{
 
     public LoginPage() {
         PageFactory.initElements(driver, this);
+        List<WebElement> requiredElements = new ArrayList<>();
+        requiredElements.add(usernameField);
+        requiredElements.add(passwordField);
+        requiredElements.add(loginBtn);
+        loadPage(requiredElements);
+        Assert.assertEquals(getTitleText(), "Log In");
+        Assert.assertTrue(driver.getCurrentUrl().contains("app/login"));
     }
 
     public ProfilePage logIn(String username, String password){
@@ -32,15 +42,5 @@ public class LoginPage extends BasePage{
         passwordField.sendKeys(password);
         loginBtn.click();
         return new ProfilePage();
-    }
-
-    public String getTitleText(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        waitForElementToBeVisible(returnNonStaleElement(By.cssSelector("main h1")));
-        return returnNonStaleElement(By.cssSelector("main h1")).getText();
     }
 }

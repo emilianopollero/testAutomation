@@ -9,10 +9,15 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
 
     @BeforeClass
-//    @Parameters("browser")
     public void setup(){
         Driver.init(System.getProperty("browser"));
     }
+
+//    @BeforeClass
+//    @Parameters("browser")
+//    public void setup(String browser){
+//        Driver.init(browser);
+//    }
 
     @BeforeMethod
     public void openBrowser () {
