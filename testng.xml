@@ -7,8 +7,13 @@
     </test>
 
     <test name="Regression1">
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="SeleniumAutomation.LoginTest"/>
+            <class name="SeleniumAutomation.LoginTest">
+                <!--<methods>-->
+                    <!--<include name="invalidLoginTest"/>-->
+                <!--</methods>-->
+            </class>
         </classes>
     </test>
 </suite>
