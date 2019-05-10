@@ -1,51 +1,37 @@
 package SeleniumAutomation;
 
+import SeleniumAutomation.Utils.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     public static WebDriver driver;
-    public static WebDriverWait wait;
 
-    //Constructor
-    public BasePage (WebDriver driver, WebDriverWait wait){
-        BasePage.driver = driver;
-        BasePage.wait = wait;
-        PageFactory.initElements(driver, this);
+    public static void setDriver(WebDriver driverInstance) {
+        driver = driverInstance;
     }
 
-    //Click Method by selector
-    public void click (By elementLocation) {
-        driver.findElement(elementLocation).click();
-    }
-
-    //Click Method By WebElement
-    public void click(WebElement element){
-        element.click();
-    }
-
-    //Write Text by selector
-    public void writeText (By elementLocation, String text) {
-        driver.findElement(elementLocation).clear();
-        driver.findElement(elementLocation).sendKeys(text);
-    }
-
-    //Write Text by element
-    public void writeText (WebElement element, String text) {
-        element.clear();
-        element.sendKeys(text);
-    }
-
-    //Get element text by selector
-    public String readText (By elementLocation) {
-        return driver.findElement(elementLocation).getText();
-    }
-
-    //Get element text by element
-    public String readText (WebElement element) {
-        return element.getText();
+    public static WebElement returnNonStaleElement(By by){
+        WebElement nonStaleElement = Driver.getInstance().findElement(by);
+        int count = 0;
+        try {
+            nonStaleElement.isEnabled();
+            return nonStaleElement;
+        }catch (StaleElementReferenceException e){
+            while (count < 4) {
+                try {
+                    //If exception generated that means It Is not able to find element then catch block will handle It.
+                    nonStaleElement = Driver.getInstance().findElement(by);
+                    nonStaleElement.isEnabled();
+                    break;
+                } catch (StaleElementReferenceException f) {
+                    System.out.println("Trying to recover from a stale element :" + f.getMessage());
+                    count += 1;
+                }
+            }
+        }
+        return nonStaleElement;
     }
 }

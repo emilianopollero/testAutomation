@@ -1,24 +1,23 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends BasePage {
+public class HomePage extends BasePage{
 
     @FindBy(id = "login_link")
     private static WebElement loginLink;
     @FindBy(id = "signup_link")
     private static WebElement signupLink;
 
-    public HomePage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
+    public HomePage() {
+        PageFactory.initElements(driver, this);
     }
 
     public LoginPage clickLogin(){
         loginLink.click();
-        return new LoginPage(driver, wait);
+        return new LoginPage();
     }
 }

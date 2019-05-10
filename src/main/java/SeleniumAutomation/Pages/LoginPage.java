@@ -1,13 +1,10 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
-import SeleniumAutomation.Enums.ECredentials;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.asserts.SoftAssert;
+import org.openqa.selenium.support.PageFactory;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
@@ -21,31 +18,29 @@ public class LoginPage extends BasePage{
     @FindBy(css = "main h1")
     private WebElement title;
 
-    SoftAssert softAssert = new SoftAssert();
-
-    public LoginPage(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
+    public LoginPage() {
+        PageFactory.initElements(driver, this);
     }
 
-    public ProfilePage logIn(ECredentials username, ECredentials password){
+    public ProfilePage logIn(String username, String password){
         System.out.println("Entering username on login username field");
         waitForElementToBeVisible(usernameField);
         usernameField.clear();
-        usernameField.sendKeys(username.getValue());
+        usernameField.sendKeys(username);
         System.out.println("Entering password on login password field");
         passwordField.clear();
-        passwordField.sendKeys(password.getValue());
+        passwordField.sendKeys(password);
         loginBtn.click();
-        return new ProfilePage(driver, wait);
+        return new ProfilePage();
     }
 
-    public void validateUserNotLoggedIn(){
-        System.out.println("Validating that user has not been logged in");
-        waitForElementToBeVisible(title);
-            softAssert.assertEquals(title.getText(), "Log In");
-            try {
-//                clickLogout();
-            }catch (NoSuchElementException ignored){}
-            softAssert.assertAll();
+    public String getTitleText(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        waitForElementToBeVisible(returnNonStaleElement(By.cssSelector("main h1")));
+        return returnNonStaleElement(By.cssSelector("main h1")).getText();
     }
 }
