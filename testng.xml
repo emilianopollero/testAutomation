@@ -8,7 +8,7 @@
 
     <test name="Regression1">
         <classes>
-
+            <class name="SeleniumAutomation.LoginTest"/>
         </classes>
     </test>
 </suite>

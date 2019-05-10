@@ -12,4 +12,11 @@ public class GoogleTest extends BaseTest {
         googleHomePage.search("Selenium");
         System.out.println("a");
     }
+    @Test
+    public void testGoogle2(){
+        driver.get("http://www.google.com");
+        GoogleHomePage googleHomePage = new GoogleHomePage(driver, wait);
+        googleHomePage.search("Selenium");
+        System.out.println("a");
+    }
 }

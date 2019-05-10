@@ -13,7 +13,7 @@ public class GoogleHomePage extends BasePage {
         super(driver, wait);
     }
 
-    @FindBy(css = "input#lst-ib")
+    @FindBy(css = "[maxlength]")
     private WebElement searchInput;
 
     public void search(String query){
