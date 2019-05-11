@@ -4,3 +4,5 @@ Suite can be ran by using mvn clean test on project root folder, -Dbrowser can b
 Example: `mvn clean test -Dbrowser=chrome`
 
 Test report can be found under /target/surefire-reports/emailable-report.html
+
+Chrome driver executable must be set on /testAutomation/drivers/chromedriver.exe

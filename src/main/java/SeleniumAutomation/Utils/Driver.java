@@ -23,7 +23,7 @@ public class Driver {
 
     private static WebDriver createDriver() {
         switch (browserName.toLowerCase()) {
-            case "chrome": //CHROME DRIVER
+            case "chrome":
                 System.setProperty("webdriver.chrome.driver", "/testAutomation/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
