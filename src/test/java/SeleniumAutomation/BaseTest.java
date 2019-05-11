@@ -17,7 +17,11 @@ public class BaseTest {
     @BeforeClass
     @Parameters("browser")
     public void setup(String browser){
-        Driver.init(browser);
+        if (browser == null){
+            Driver.init(System.getProperty("browser"));
+        }else {
+            Driver.init(browser);
+        }
     }
 
     @BeforeMethod
