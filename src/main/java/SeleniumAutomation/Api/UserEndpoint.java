@@ -67,6 +67,17 @@ public class UserEndpoint {
                 .put("http://localhost:8081/waesheroes/api/v1/users");
     }
 
+    public static Response deleteUser(String username, String password, UserEndpoint user) throws JsonProcessingException {
+        return RestAssured.given().log().all()
+                .auth()
+                .preemptive()
+                .basic(username, password)
+                .body(getJson(user))
+                .contentType(String.valueOf(ContentType.APPLICATION_JSON))
+                .when()
+                .delete("http://localhost:8081/waesheroes/api/v1/users");
+    }
+
     public static ArrayList getAllUsers(String username, String password) {
         Response allUsersResponse = RestAssured.given().log().all()
                 .auth()

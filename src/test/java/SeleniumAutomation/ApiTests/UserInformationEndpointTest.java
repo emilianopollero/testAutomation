@@ -61,7 +61,7 @@ public class UserInformationEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         Response response = UserEndpoint.userDetails("notAUser");
         Assert.assertEquals(404, response.getStatusCode());
-        Assert.assertEquals("Username notAUser does not exist.",response.jsonPath().getString("message"));
+        Assert.assertEquals("Username notAUser does not exist.", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
         System.out.println("----------------------------------------------------------------------");
@@ -69,13 +69,13 @@ public class UserInformationEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         response = UserEndpoint.userDetails("");
         Assert.assertEquals(404, response.getStatusCode());
-        Assert.assertEquals("Username  does not exist.",response.jsonPath().getString("message"));
+        Assert.assertEquals("Username  does not exist.", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
     }
 
     @Test(priority = 1)
-    public void getAllUsersInformationTest(){
+    public void getAllUsersInformationTest() {
         // This test calls the all users endpoint with valid credentials and checks that it retrieves a list of users
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing that all users endpoint returns a list of users");
@@ -85,7 +85,7 @@ public class UserInformationEndpointTest {
     }
 
     @Test(priority = 1)
-    public void invalidLoginAllUserInformationTest(){
+    public void invalidLoginAllUserInformationTest() {
         // This test calls the all users endpoint with invalid credentials
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing non admin user cannot retrieve all users information");

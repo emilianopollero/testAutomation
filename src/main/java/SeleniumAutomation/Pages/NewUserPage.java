@@ -11,7 +11,8 @@ import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 public class NewUserPage extends BasePage {
     @FindBy(css = "[class] p:nth-child(2)")
     private WebElement firstProfileText;
-    public NewUserPage(){
+
+    public NewUserPage() {
         PageFactory.initElements(driver, this);
     }
 

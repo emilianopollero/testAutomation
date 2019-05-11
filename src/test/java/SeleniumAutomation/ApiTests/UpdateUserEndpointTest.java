@@ -2,7 +2,10 @@ package SeleniumAutomation.ApiTests;
 
 import SeleniumAutomation.Api.UserEndpoint;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.JsonObject;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apache.http.entity.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -151,7 +154,7 @@ public class UpdateUserEndpointTest {
                 "format with response code: " + response.getStatusCode());
     }
 
-    @Test
+    @Test(priority = 1)
     public void validateOnlyAdminUserCanUpdate() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that non admin users cannot update other users");
@@ -167,5 +170,30 @@ public class UpdateUserEndpointTest {
         response.prettyPrint();
         Assert.assertTrue(400 <= response.getStatusCode(), "Non admin user performed an update operation and was " +
                 "successful with response code: " + response.getStatusCode());
+    }
+
+    @Test(priority = 1)
+    public void nonExistentUserUpdateTest() {
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("Testing updating a non existent user");
+        System.out.println("----------------------------------------------------------------------");
+        JsonObject createBody = new JsonObject();
+        createBody.addProperty("id", "1000000");
+        createBody.addProperty("name", "nonexistant");
+        createBody.addProperty("username", "nonexistant");
+        createBody.addProperty("email", "nonexistant@nonexistant.com");
+        createBody.addProperty("superpower", "nonexistant");
+        createBody.addProperty("dateOfBirth", "2090-12-01");
+        createBody.addProperty("isAdmin", false);
+        createBody.addProperty("password", "nonexistant");
+        Assert.assertTrue(400 <= RestAssured.given().log().all()
+                        .auth()
+                        .preemptive()
+                        .basic("admin", "hero")
+                        .body(createBody.toString())
+                        .contentType(String.valueOf(ContentType.APPLICATION_JSON))
+                        .when()
+                        .put("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
+                "Successful update response for non existent user");
     }
 }

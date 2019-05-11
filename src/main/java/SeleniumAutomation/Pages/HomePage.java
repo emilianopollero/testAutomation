@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
     @FindBy(id = "login_link")
     private static WebElement loginLink;
@@ -22,12 +22,13 @@ public class HomePage extends BasePage{
         System.out.println("Going to home page");
     }
 
-    public LoginPage clickLogin(){
+    public LoginPage clickLogin() {
         waitForElementToBeClickable(loginLink);
         loginLink.click();
         return new LoginPage();
     }
-    public SignUpPage clickSignUp(){
+
+    public SignUpPage clickSignUp() {
         waitForElementToBeClickable(signupLink);
         signupLink.click();
         return new SignUpPage();

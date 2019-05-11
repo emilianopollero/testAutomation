@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
-public class DetailsPage extends BasePage{
+public class DetailsPage extends BasePage {
     @FindBy(css = "ul li:nth-of-type(1)")
     private WebElement nameDetails;
     @FindBy(css = "ul li:nth-of-type(2)")
@@ -31,7 +31,7 @@ public class DetailsPage extends BasePage{
         return emailDetails.getText();
     }
 
-    public LoginPage clickLogout(){
+    public LoginPage clickLogout() {
         waitForElementToBeClickable(logOutLink);
         logOutLink.click();
         return new LoginPage();

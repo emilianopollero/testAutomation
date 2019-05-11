@@ -117,53 +117,62 @@ public class LoginTest extends BaseTest {
                     loginPage.logIn("seven", "hero");
                     System.out.println("Validating that user has not been logged in");
                     softAssert.assertEquals("Log In", getTitleText());
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertAll();
                     break;
                 case "wrongPassword":
                     loginPage.logIn("admin", "seven");
                     System.out.println("Validating that user has not been logged in");
                     softAssert.assertEquals("Log In", getTitleText());
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertAll();
                     break;
                 case "emptyUsername":
                     loginPage.logIn("", "hero");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "emptyPassword":
                     loginPage.logIn("admin", "");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "empty":
                     loginPage.logIn("", "");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "caseSensitivePassword":
                     loginPage.logIn("admin", "HERO");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "caseSensitiveUsername":
                     loginPage.logIn("ADMIN", "hero");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "whitespacesInUsername":
                     loginPage.logIn("admin ", "hero");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;
                 case "whitespacesInPassword":
                     loginPage.logIn("admin", "hero ");
                     System.out.println("Validating that user has not been logged in");
+                    softAssert.assertEquals("Wrong credentials. You can do it, try again!", loginPage.getStatusText());
                     softAssert.assertEquals("Log In", getTitleText());
                     softAssert.assertAll();
                     break;

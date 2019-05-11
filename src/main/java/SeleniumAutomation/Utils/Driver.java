@@ -41,7 +41,7 @@ public class Driver {
     }
 
     public static void quit() {
-        if (driver!=null) {
+        if (driver != null) {
             driver.close();
             driver.quit();
             driver = null;
