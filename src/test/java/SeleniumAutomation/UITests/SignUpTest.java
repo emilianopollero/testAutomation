@@ -38,7 +38,8 @@ public class SignUpTest extends BaseTest {
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
         String[] cases = {"noUsername", "noPassword", "noName", "noEmail", "noDay",
-                "noMonth", "noYear"};
+                "noMonth", "noYear", "incorrectFormatEmail", "nothingBefore@", "invalidCharactersBefore@" +
+                "invalidCharactersAfter@"};
         for (String value : cases) {
             switch (value) {
                 // This case verifies that username is mandatory
@@ -72,6 +73,46 @@ public class SignUpTest extends BaseTest {
                     System.out.println("Validating user has not been signed");
                     Assert.assertEquals(getTitleText(), "Sign Up");
                     System.out.println("User with no email was not registered");
+                    break;
+                case "incorrectFormatEmail":
+                    // Incorrect format email test
+                    signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
+                            "email", "19", Month.JUNE, "1982");
+                    System.out.println("Validating user has not been signed");
+                    Assert.assertEquals(getTitleText(), "Sign Up");
+                    System.out.println("User with incorrect email was not registered");
+                    break;
+                case "nothingBefore@":
+                    // Incorrect format email test
+                    signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
+                            "@email.com", "19", Month.JUNE, "1982");
+                    System.out.println("Validating user has not been signed");
+                    Assert.assertEquals(getTitleText(), "Sign Up");
+                    System.out.println("User with incorrect email was not registered");
+                    break;
+                case "nothingAfter@":
+                    // Incorrect format email test
+                    signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
+                            "email@", "19", Month.JUNE, "1982");
+                    System.out.println("Validating user has not been signed");
+                    Assert.assertEquals(getTitleText(), "Sign Up");
+                    System.out.println("User with incorrect email was not registered");
+                    break;
+                case "invalidCharactersBefore@":
+                    // Incorrect format email test
+                    signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
+                            "’àáâãäåæçèéêë@mail.com", "19", Month.JUNE, "1982");
+                    System.out.println("Validating user has not been signed");
+                    Assert.assertEquals(getTitleText(), "Sign Up");
+                    System.out.println("User with incorrect email was not registered");
+                    break;
+                case "invalidCharactersAfter@":
+                    // Incorrect format email test
+                    signUpPage.signUp("emiliano,pollero", "123456", "Emiliano",
+                            "پ محسوس کر سک@email", "19", Month.JUNE, "1982");
+                    System.out.println("Validating user has not been signed");
+                    Assert.assertEquals(getTitleText(), "Sign Up");
+                    System.out.println("User with incorrect email was not registered");
                     break;
                 case "noDay":
                     // This case verifies that day is mandatory
