@@ -51,12 +51,13 @@ public class SignUpEndpointTest {
         createBody.addProperty("dateOfBirth", 1982);
         createBody.addProperty("isAdmin", "true");
         createBody.addProperty("password", 123456);
-        Response response = RestAssured.given().log().all()
-                .body(createBody.toString())
-                .contentType(String.valueOf(ContentType.APPLICATION_JSON))
-                .when()
-                .post("http://localhost:8081/waesheroes/api/v1/users");
-        Assert.assertEquals(400, response.getStatusCode());
+        Assert.assertEquals(400,
+                RestAssured.given().log().all()
+                        .body(createBody.toString())
+                        .contentType(String.valueOf(ContentType.APPLICATION_JSON))
+                        .when()
+                        .post("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
+                "Successful create user response for invalid values");
     }
 
 }

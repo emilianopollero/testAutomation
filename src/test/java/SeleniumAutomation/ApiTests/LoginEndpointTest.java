@@ -78,14 +78,14 @@ public class LoginEndpointTest {
     }
 
     @Test(priority = 1)
-    public void invalidLoginTest(){
+    public void invalidLoginTest() {
         // Call login endpoint with invalid credentials
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing invalid credentials");
         System.out.println("----------------------------------------------------------------------");
         Response response = UserEndpoint.login("dev", "wizar");
         Assert.assertEquals(401, response.getStatusCode());
-        Assert.assertEquals("Bad credentials",response.jsonPath().getString("message"));
+        Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
         System.out.println("----------------------------------------------------------------------");
@@ -93,7 +93,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         response = UserEndpoint.login("", "wizard");
         Assert.assertEquals(401, response.getStatusCode());
-        Assert.assertEquals("Bad credentials",response.jsonPath().getString("message"));
+        Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
         System.out.println("----------------------------------------------------------------------");
@@ -101,7 +101,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         response = UserEndpoint.login("dev", "");
         Assert.assertEquals(401, response.getStatusCode());
-        Assert.assertEquals("Bad credentials",response.jsonPath().getString("message"));
+        Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
         System.out.println("----------------------------------------------------------------------");
@@ -109,7 +109,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         response = UserEndpoint.login("", "");
         Assert.assertEquals(401, response.getStatusCode());
-        Assert.assertEquals("Bad credentials",response.jsonPath().getString("message"));
+        Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
     }

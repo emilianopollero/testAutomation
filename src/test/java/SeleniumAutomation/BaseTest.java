@@ -16,16 +16,16 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters("browser")
-    public void setup(String browser){
-        if (browser == null){
+    public void setup(String browser) {
+        if (browser == null) {
             Driver.init(System.getProperty("browser"));
-        }else {
+        } else {
             Driver.init(browser);
         }
     }
 
     @BeforeMethod
-    public void openBrowser () {
+    public void openBrowser() {
         Driver.getInstance();
         Driver.getInstance().manage().deleteAllCookies();
         Driver.getInstance().manage().window().maximize();
@@ -33,7 +33,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void teardown () {
+    public void teardown() {
         Driver.quit();
     }
 }

@@ -31,7 +31,7 @@ public class ProfilePage extends BasePage {
         return firstProfileText.getText();
     }
 
-    public LoginPage clickLogout(){
+    public LoginPage clickLogout() {
         waitForElementToBeClickable(logOutLink);
         logOutLink.click();
         return new LoginPage();
@@ -46,7 +46,7 @@ public class ProfilePage extends BasePage {
         return adminUsersTable.isDisplayed();
     }
 
-    public DetailsPage clickOnDetails(){
+    public DetailsPage clickOnDetails() {
         waitForElementToBeClickable(detailsLink);
         detailsLink.click();
         return new DetailsPage();

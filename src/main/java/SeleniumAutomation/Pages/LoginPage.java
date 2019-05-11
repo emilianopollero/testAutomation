@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     @FindBy(id = "username_input")
     private WebElement usernameField;
     @FindBy(id = "password_input")
@@ -17,6 +17,8 @@ public class LoginPage extends BasePage{
     private WebElement loginBtn;
     @FindBy(css = "main h1")
     private WebElement title;
+    @FindBy(css = "[class^='status-module--status__text']")
+    private WebElement statusTextBox;
 
     public LoginPage() {
         PageFactory.initElements(driver, this);
@@ -24,7 +26,7 @@ public class LoginPage extends BasePage{
         Assert.assertTrue(driver.getCurrentUrl().contains("app/login"));
     }
 
-    public ProfilePage logIn(String username, String password){
+    public ProfilePage logIn(String username, String password) {
         System.out.println("Entering username on login username field");
         waitForElementToBeVisible(usernameField);
         usernameField.clear();
@@ -34,5 +36,10 @@ public class LoginPage extends BasePage{
         passwordField.sendKeys(password);
         loginBtn.click();
         return new ProfilePage();
+    }
+
+    public String getStatusText() {
+        waitForElementToBeVisible(statusTextBox);
+        return statusTextBox.getText();
     }
 }
