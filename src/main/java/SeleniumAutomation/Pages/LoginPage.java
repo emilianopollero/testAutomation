@@ -37,9 +37,4 @@ public class LoginPage extends BasePage {
         loginBtn.click();
         return new ProfilePage();
     }
-
-    public String getStatusText() {
-        waitForElementToBeVisible(statusTextBox);
-        return statusTextBox.getText();
-    }
 }
