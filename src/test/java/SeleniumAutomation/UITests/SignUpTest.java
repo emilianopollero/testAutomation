@@ -1,5 +1,6 @@
-package SeleniumAutomation;
+package SeleniumAutomation.UITests;
 
+import SeleniumAutomation.BaseTest;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.NewUserPage;
 import SeleniumAutomation.Pages.SignUpPage;
@@ -15,7 +16,9 @@ public class SignUpTest extends BaseTest {
 
     @Test(priority = 1)
     public void validateUserCanSignUp() {
+        System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies users can signUp and the proper profile page is shown to them");
+        System.out.println("----------------------------------------------------------------------");
         Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
@@ -28,7 +31,9 @@ public class SignUpTest extends BaseTest {
 
     @Test(priority = 1)
     public void validateRequiredSignUpFields() {
+        System.out.println("----------------------------------------------------------------------");
         System.out.println("This test validates required signUp fields");
+        System.out.println("----------------------------------------------------------------------");
         Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
