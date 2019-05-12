@@ -10,9 +10,9 @@
         <!--<parameter name="browser" value="chrome"/>-->
         <classes>
             <class name="SeleniumAutomation.ApiTests.DeleteUserTest">
-                <methods>
-                    <include name="invalidCredentialsUserDeleteTest"/>
-                </methods>
+                <!--<methods>-->
+                    <!--<include name="invalidCredentialsUserDeleteTest"/>-->
+                <!--</methods>-->
             </class>
             <class name="SeleniumAutomation.UITests.DetailsPageTest"/>
             <class name="SeleniumAutomation.UITests.SignUpTest"/>

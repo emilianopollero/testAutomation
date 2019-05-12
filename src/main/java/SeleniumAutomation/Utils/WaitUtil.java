@@ -14,7 +14,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class WaitUtil extends BasePage {
 
-    private static int timeout = 120;
+    private static int timeout = 60;
     private static int tryEverySeconds = 1;
     private static FluentWait waiting = new FluentWait(driver)
             .withTimeout(timeout, TimeUnit.SECONDS)

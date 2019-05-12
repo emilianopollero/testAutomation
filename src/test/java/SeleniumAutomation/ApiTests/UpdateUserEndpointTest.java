@@ -13,9 +13,9 @@ import java.time.Instant;
 
 public class UpdateUserEndpointTest {
 
+    // This test calls the update endpoint with the different users, checks for a 200 response code and validates all values
     @Test(priority = 1)
     public void updateUserEndpointTest() throws JsonProcessingException {
-        // This test calls the login api with the different users, checks for a 200 response code and validates all values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user name can be updated");
         System.out.println("----------------------------------------------------------------------");
@@ -101,6 +101,7 @@ public class UpdateUserEndpointTest {
         Assert.assertEquals(newUser.getDateOfBirth(), updatedUser.getDateOfBirth());
     }
 
+    // This test calls the update endpoint with invalid values and checks system response
     @Test(priority = 1)
     public void invalidFieldsUpdateTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
@@ -154,6 +155,7 @@ public class UpdateUserEndpointTest {
                 "format with response code: " + response.getStatusCode());
     }
 
+    // This test calls the update endpoint with non admin credentials and validates that update operation is not allowed
     @Test(priority = 1)
     public void validateOnlyAdminUserCanUpdate() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
@@ -172,6 +174,7 @@ public class UpdateUserEndpointTest {
                 "successful with response code: " + response.getStatusCode());
     }
 
+    // This test calls the update endpoint for a non existent user and checks system response
     @Test(priority = 1)
     public void nonExistentUserUpdateTest() {
         System.out.println("----------------------------------------------------------------------");

@@ -4,6 +4,7 @@ import SeleniumAutomation.Api.UserEndpoint;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.apache.http.entity.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,24 +13,26 @@ import java.util.ArrayList;
 
 public class DeleteUserTest {
 
+    // This test calls the delete endpoint for a user, checks for a 200 response code and validates user has been removed
     @Test(priority = 1)
     public void userDeleteTest() throws JsonProcessingException {
-        // This test calls the login api with the different users, checks for a 200 response code and validates all values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that a user can be deleted");
         System.out.println("----------------------------------------------------------------------");
         ArrayList allUsers = UserEndpoint.getAllUsers("admin", "hero");
         UserEndpoint userToBeDeleted = (UserEndpoint) allUsers.get(allUsers.size() - 1);
-        UserEndpoint.deleteUser("admin", "hero", userToBeDeleted);
+        Response response = UserEndpoint.deleteUser("admin", "hero", userToBeDeleted);
+        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertEquals("User '" + userToBeDeleted.getUsername() + "' removed from database.", response.getBody().prettyPrint());
         allUsers = UserEndpoint.getAllUsers("admin", "hero");
         UserEndpoint lastUser = (UserEndpoint) allUsers.get(allUsers.size() - 1);
         Assert.assertNotEquals(userToBeDeleted.getId(), lastUser.getId(), "User was not deleted and it is still " +
                 "present on the system with id" + userToBeDeleted.getId());
     }
 
+    // This test calls the delete endpoint with non admin user and checks that the user is not deleted
     @Test(priority = 1)
     public void invalidCredentialsUserDeleteTest() throws JsonProcessingException {
-        // This test calls the login api with the different users, checks for a 200 response code and validates all values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that non admin users cannot delete");
         System.out.println("----------------------------------------------------------------------");
@@ -42,6 +45,7 @@ public class DeleteUserTest {
                 "Non admin user credentials delete request was sent and amount of users decreased");
     }
 
+    // This test calls the delete endpoint with a non existent user and checks system error handling
     @Test(priority = 1)
     public void nonExistentUserDeleteTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -57,15 +61,16 @@ public class DeleteUserTest {
         createBody.addProperty("isAdmin", false);
         createBody.addProperty("password", "nonexistant");
         int allUsersSize = UserEndpoint.getAllUsers("admin", "hero").size();
-        Assert.assertTrue(400 <= RestAssured.given().log().all()
-                        .auth()
-                        .preemptive()
-                        .basic("admin", "hero")
-                        .body(createBody.toString())
-                        .contentType(String.valueOf(ContentType.APPLICATION_JSON))
-                        .when()
-                        .put("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
-                "Successful update response for non existent user");
+        Response response = RestAssured.given().log().all()
+                .auth()
+                .preemptive()
+                .basic("admin", "hero")
+                .body(createBody.toString())
+                .contentType(String.valueOf(ContentType.APPLICATION_JSON))
+                .when()
+                .delete("http://localhost:8081/waesheroes/api/v1/users");
+        Assert.assertEquals("Username nonexistant does not exist.", response.jsonPath().getString("message"));
+        Assert.assertTrue(400 <= response.getStatusCode(), "Successful delete response for non existent user");
         System.out.println("Validating that amount of users has not decreased");
         Assert.assertEquals(allUsersSize, UserEndpoint.getAllUsers("admin", "hero").size(),
                 "Non existent user delete request was sent and amount of users decreased");

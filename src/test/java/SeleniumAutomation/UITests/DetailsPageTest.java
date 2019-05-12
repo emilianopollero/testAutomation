@@ -16,6 +16,7 @@ public class DetailsPageTest extends BaseTest {
 
     private SoftAssert softAssert = new SoftAssert();
 
+    // This test verified the details page information for several users
     @Test(priority = 1)
     public void validateDetailsPageUserDetails() {
         System.out.println("----------------------------------------------------------------------");

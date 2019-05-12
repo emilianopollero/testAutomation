@@ -17,6 +17,7 @@ public class LoginTest extends BaseTest {
 
     private SoftAssert softAssert = new SoftAssert();
 
+    //    This test verifies admin user can login and profile page for admin user is presented
     @Test(priority = 1)
     public void validAdminLoginTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -37,6 +38,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    //    This test verifies dev user can login and profile page for dev user is presented
     @Test(priority = 1)
     public void validDevLoginTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -55,6 +57,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    //    This test verifies tester user can login and profile page for tester user is presented
     @Test(priority = 1)
     public void validTesterLoginTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -73,6 +76,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    //    This test verifies user can log out of the application
     @Test(priority = 1)
     public void logOutTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -87,6 +91,7 @@ public class LoginTest extends BaseTest {
         System.out.println("User successfully logged out of the application");
     }
 
+    //    This test verifies that username is not case sensitive
     @Test(priority = 1)
     //No specific requirement for this
     public void validUsernameInUppercaseLogin() throws InterruptedException {
@@ -101,6 +106,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
     }
 
+//    This test verifies that the system handles invalid credentials properly
     @Test(priority = 2)
     public void invalidLoginTest() {
         System.out.println("----------------------------------------------------------------------");

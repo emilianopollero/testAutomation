@@ -14,6 +14,7 @@ import static SeleniumAutomation.BasePage.getTitleText;
 
 public class SignUpTest extends BaseTest {
 
+    // This test verifies users can signUp and the proper profile page is shown to them
     @Test(priority = 1)
     public void validateUserCanSignUp() {
         System.out.println("----------------------------------------------------------------------");
@@ -29,6 +30,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("Profile page for new user is correct");
     }
 
+    // This test validates required signUp fields
     @Test(priority = 1)
     public void validateRequiredSignUpFields() {
         System.out.println("----------------------------------------------------------------------");
@@ -38,7 +40,7 @@ public class SignUpTest extends BaseTest {
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
         String[] cases = {"noUsername", "noPassword", "noName", "noEmail", "noDay",
-                "noMonth", "noYear", "incorrectFormatEmail", "nothingBefore@", "invalidCharactersBefore@" +
+                "noMonth", "noYear", "incorrectFormatEmail", "nothingBefore@", "nothingAfter@", "invalidCharactersBefore@" +
                 "invalidCharactersAfter@"};
         for (String value : cases) {
             switch (value) {

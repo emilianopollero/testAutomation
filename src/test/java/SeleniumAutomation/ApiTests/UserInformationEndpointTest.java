@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 
 public class UserInformationEndpointTest {
 
+    // This test calls the user information endpoint and checks correct values are returned
     @Test(priority = 1)
     public void getUserInformationTest() {
-        // This test calls the login api with the different users, checks for a 200 response code and validates all values
         System.out.println("Testing user details response for dev user");
         Response response = UserEndpoint.userDetails("dev");
         Assert.assertEquals(200, response.getStatusCode());
@@ -53,9 +53,9 @@ public class UserInformationEndpointTest {
         response.prettyPrint();
     }
 
+    // This test calls the user api with invalid values
     @Test(priority = 1)
     public void userInformationInvalidUserEndpointTest() {
-        // This test calls the user api with invalid values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing user details response for non existent user");
         System.out.println("----------------------------------------------------------------------");
@@ -74,9 +74,9 @@ public class UserInformationEndpointTest {
         response.prettyPrint();
     }
 
+    // This test calls the all users endpoint with valid credentials and checks that it retrieves non empty list of users
     @Test(priority = 1)
     public void getAllUsersInformationTest() {
-        // This test calls the all users endpoint with valid credentials and checks that it retrieves a list of users
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing that all users endpoint returns a list of users");
         System.out.println("----------------------------------------------------------------------");
@@ -84,9 +84,9 @@ public class UserInformationEndpointTest {
                 "All users endpoint returned an empty list");
     }
 
+    // This test calls the all users endpoint with invalid credentials
     @Test(priority = 1)
     public void invalidLoginAllUserInformationTest() {
-        // This test calls the all users endpoint with invalid credentials
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing non admin user cannot retrieve all users information");
         System.out.println("----------------------------------------------------------------------");
@@ -96,11 +96,11 @@ public class UserInformationEndpointTest {
         System.out.println("Testing non existing credentials fail to get all users information");
         System.out.println("----------------------------------------------------------------------");
         Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("tester1", "maniac").getStatusCode(),
-                "Non admin user was able to get all users information");
+                "Non existent user was able to get all users information");
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty credentials fail to get all users information");
         System.out.println("----------------------------------------------------------------------");
         Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("", "").getStatusCode(),
-                "Non admin user was able to get all users information");
+                "Empty user credentials was able to get all users information");
     }
 }

@@ -13,11 +13,11 @@ import java.time.Instant;
 
 public class SignUpEndpointTest {
 
+    // This test calls the signUp endpoint, creates a new user and validates the created user values
     @Test(priority = 1)
     public void createUserEndpointTest() throws JsonProcessingException {
-        // This test calls the signup endpoint, creates a new user and validates the created user values
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("Test creation of new user");
+        System.out.println("Test creation of new users");
         System.out.println("----------------------------------------------------------------------");
         UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(), "emiliano.pollero"
                 + Instant.now(), "test" + Instant.now() + "@test.com", UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
@@ -26,6 +26,7 @@ public class SignUpEndpointTest {
         System.out.println("Response is");
         response.prettyPrint();
         Assert.assertEquals(201, response.getStatusCode());
+        System.out.println("Validating new created user values match expected values");
         UserEndpoint createdUser = new UserEndpoint(response.jsonPath().get());
         Assert.assertEquals(createdUser.getId(), newUser.getId());
         Assert.assertEquals(createdUser.getName(), newUser.getName());
@@ -36,9 +37,9 @@ public class SignUpEndpointTest {
         Assert.assertEquals(createdUser.getisAdmin(), newUser.getisAdmin());
     }
 
+    // This test calls the signUp endpoint with invalid values
     @Test(priority = 1)
     public void createUserInvalidValuesEndpointTest() {
-        // This test calls the signup endpoint with invalid values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test invalid values on post body");
         System.out.println("----------------------------------------------------------------------");
@@ -59,5 +60,4 @@ public class SignUpEndpointTest {
                         .post("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
                 "Successful create user response for invalid values");
     }
-
 }

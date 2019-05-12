@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 public class LoginEndpointTest {
 
+    // This test calls the login api with the different users, checks for a 200 response code and validates all values
     @Test(priority = 1)
     public void successfulLoginTest() throws JsonProcessingException {
-        // This test calls the login api with the different users, checks for a 200 response code and validates all values
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for dev user");
         System.out.println("----------------------------------------------------------------------");
@@ -77,9 +77,9 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
+    // Call login endpoint with invalid credentials
     @Test(priority = 1)
     public void invalidLoginTest() {
-        // Call login endpoint with invalid credentials
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing invalid credentials");
         System.out.println("----------------------------------------------------------------------");

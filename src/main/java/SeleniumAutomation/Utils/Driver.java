@@ -9,7 +9,8 @@ import java.io.File;
 public class Driver {
     private static String browserName;
     private static WebDriver driver;
-// Driver singleton
+
+    // Returns driver object
     public static WebDriver getInstance() {
         if (driver == null) {
             driver = createDriver();
@@ -17,10 +18,12 @@ public class Driver {
         return driver;
     }
 
+    // Sets driver browser
     public static void init(String browser) {
         browserName = browser;
     }
 
+    // Creates driver object using browser variable
     private static WebDriver createDriver() {
         switch (browserName.toLowerCase()) {
             case "chrome":
@@ -40,6 +43,7 @@ public class Driver {
         return driver;
     }
 
+    // Quits the driver
     public static void quit() {
         if (driver != null) {
             driver.close();

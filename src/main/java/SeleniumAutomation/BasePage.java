@@ -14,13 +14,13 @@ public class BasePage {
         driver = driverInstance;
     }
 
-    //Clears input field and enters given String
+    // Clears input field and enters given String
     public static void enterText(WebElement element, String text) {
         element.clear();
         element.sendKeys(text);
     }
 
-    //Returns a selenium Select object from a given WebElement, as PageFactory is not picking up Select objects for
+    // Returns a selenium Select object from a given WebElement, as PageFactory is not picking up Select objects for
     // initialization, one must initialize the Select as a WebElement on PageFactory, and then use this method to get
     // the Select implementation of it
     public static Select getSelectElement(WebElement element) {
