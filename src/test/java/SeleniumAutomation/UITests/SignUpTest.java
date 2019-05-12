@@ -25,7 +25,7 @@ public class SignUpTest extends BaseTest {
         NewUserPage newUserPage = signUpPage.signUp("emiliano.pollero", "123456", "Emiliano",
                 "test@test.com", "19", Month.JUNE, "1982");
         System.out.println("Validating profile page for new user");
-        Assert.assertEquals(newUserPage.getFirstProfileText(), "Welcome to your new profile page, " + "Emiliano!");
+        Assert.assertEquals(newUserPage.getWelcomeText(), "Welcome to your new profile page, " + "Emiliano!");
         System.out.println("Profile page for new user is correct");
     }
 

@@ -15,6 +15,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "signup_link")
     private static WebElement signupLink;
 
+//    Home page constructor checks that the user is on the Home Page by asserting title and url
     public HomePage() {
         PageFactory.initElements(driver, this);
         Assert.assertEquals(getTitleText(), "WAES Tester Assignment");
@@ -22,12 +23,14 @@ public class HomePage extends BasePage {
         System.out.println("Going to home page");
     }
 
+//    Clicks on the Login link and returns a new LoginPage
     public LoginPage clickLogin() {
         waitForElementToBeClickable(loginLink);
         loginLink.click();
         return new LoginPage();
     }
 
+//    Clicks on the Sign Up link and returns a new SignUpPage
     public SignUpPage clickSignUp() {
         waitForElementToBeClickable(signupLink);
         signupLink.click();

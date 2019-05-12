@@ -9,7 +9,7 @@ import java.io.File;
 public class Driver {
     private static String browserName;
     private static WebDriver driver;
-
+// Driver singleton
     public static WebDriver getInstance() {
         if (driver == null) {
             driver = createDriver();

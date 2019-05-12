@@ -42,11 +42,13 @@ public class UserEndpoint {
         this.isAdmin = isAdmin;
     }
 
+//     Returns json representation of UserEndpoint object
     public static String getJson(UserEndpoint user) throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(user);
     }
 
+//     Calls the create user endpoint sending a UserEndpoint object Json representation with user details
     public static Response createUser(UserEndpoint user) throws JsonProcessingException {
         return RestAssured.given().log().all()
                 .body(getJson(user))
@@ -55,7 +57,7 @@ public class UserEndpoint {
                 .post("http://localhost:8081/waesheroes/api/v1/users");
     }
 
-
+//     Calls the update user endpoint sending a UserEndpoint object Json representation with user details and required authentication
     public static Response updateUser(String username, String password, UserEndpoint user) throws JsonProcessingException {
         return RestAssured.given().log().all()
                 .auth()
@@ -67,6 +69,7 @@ public class UserEndpoint {
                 .put("http://localhost:8081/waesheroes/api/v1/users");
     }
 
+//     Calls the delete user endpoint sending a UserEndpoint object Json representation with user details and required authentication
     public static Response deleteUser(String username, String password, UserEndpoint user) throws JsonProcessingException {
         return RestAssured.given().log().all()
                 .auth()
@@ -78,6 +81,7 @@ public class UserEndpoint {
                 .delete("http://localhost:8081/waesheroes/api/v1/users");
     }
 
+//     Calls the get all users endpoint sending basic auth and returning an Arraylist of UserEndpoint objects representing each user
     public static ArrayList getAllUsers(String username, String password) {
         Response allUsersResponse = RestAssured.given().log().all()
                 .auth()
@@ -94,6 +98,7 @@ public class UserEndpoint {
         return result;
     }
 
+//     Calls the get all users endpoint sending basic auth and returning a Response object with the endpoint response
     public static Response getAllUsersResponse(String username, String password) {
         return RestAssured.given().log().all()
                 .auth()
@@ -104,6 +109,7 @@ public class UserEndpoint {
 
     }
 
+//     Calls the login endpoint sending basic auth and returns its Response object
     public static Response login(String username, String password) {
         return RestAssured.given().log().all()
                 .auth()
@@ -113,6 +119,7 @@ public class UserEndpoint {
                 .get("http://localhost:8081/waesheroes/api/v1/users/access");
     }
 
+//     Calls the users details endpoint sending the String username and returns its Response object
     public static Response userDetails(String username) {
         return RestAssured.given().log().all()
                 .when()
@@ -120,12 +127,14 @@ public class UserEndpoint {
                 .get("http://localhost:8081/waesheroes/api/v1/users/details");
     }
 
+//     Calls the all users endpoint, gets the last user from the list and returns its int id
     public static int getLastUserId() {
         ArrayList allUsers = UserEndpoint.getAllUsers("admin", "hero");
         UserEndpoint lastUser = (UserEndpoint) allUsers.get(allUsers.size() - 1);
         return lastUser.getId();
     }
 
+//     Gets a random String superpower from an Array of Strings
     public static String getRandomSuperpower() {
         // Selects super power from a random list
         String[] superPower = {"invisibility", "super strength", "invulnerability", "spacewalking", "dancing", "super cook",
@@ -135,6 +144,7 @@ public class UserEndpoint {
         return superPower[randomNumber];
     }
 
+//     Gets a random String name from an Array of Strings
     public static String getRandomName() {
         // Selects name from a random list
         String[] name = {"Aaren", "Abbye", "Adeline", "Adoree", "Roman", "Lionel",

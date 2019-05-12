@@ -20,12 +20,15 @@ public class LoginPage extends BasePage {
     @FindBy(css = "[class^='status-module--status__text']")
     private WebElement statusTextBox;
 
+//    Login page constructor asserts page title is correct and url is correct
     public LoginPage() {
         PageFactory.initElements(driver, this);
         Assert.assertEquals(getTitleText(), "Log In");
         Assert.assertTrue(driver.getCurrentUrl().contains("app/login"));
     }
 
+//    Enters parametrized values username and password on username and password fields, clicks on login button and returns
+//    a new ProfilePage
     public ProfilePage logIn(String username, String password) {
         System.out.println("Entering username on login username field");
         waitForElementToBeVisible(usernameField);

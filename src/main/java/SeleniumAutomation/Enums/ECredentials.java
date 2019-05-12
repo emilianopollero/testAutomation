@@ -1,5 +1,6 @@
 package SeleniumAutomation.Enums;
 
+//Enum for storing UI credentials
 public enum ECredentials {
     ADMIN_USER("admin"),
     ADMIN_USER_PASS("hero"),

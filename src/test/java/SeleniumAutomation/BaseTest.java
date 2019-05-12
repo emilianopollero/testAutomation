@@ -8,12 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 public class BaseTest {
-
-//    @BeforeClass
-//    public void setup(){
-//        Driver.init(System.getProperty("browser"));
-//    }
-
+//Sets the driver to headless or chrome before running the test
     @BeforeClass
     @Parameters("browser")
     public void setup(String browser) {
@@ -23,7 +18,7 @@ public class BaseTest {
             Driver.init(browser);
         }
     }
-
+//This method calls the browser instance, deletes cookies, maximizes its window and sets the BasePage driver variable
     @BeforeMethod
     public void openBrowser() {
         Driver.getInstance();
@@ -31,7 +26,7 @@ public class BaseTest {
         Driver.getInstance().manage().window().maximize();
         BasePage.setDriver(Driver.getInstance());
     }
-
+//Quits the driver after each test
     @AfterMethod
     public void teardown() {
         Driver.quit();

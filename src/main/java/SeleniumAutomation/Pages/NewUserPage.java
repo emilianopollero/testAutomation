@@ -10,14 +10,15 @@ import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
 public class NewUserPage extends BasePage {
     @FindBy(css = "[class] p:nth-child(2)")
-    private WebElement firstProfileText;
+    private WebElement welcomeText;
 
     public NewUserPage() {
         PageFactory.initElements(driver, this);
     }
 
-    public String getFirstProfileText() {
-        waitForElementToBeVisible(firstProfileText);
-        return firstProfileText.getText();
+//    Method to return String text of the welcome message
+    public String getWelcomeText() {
+        waitForElementToBeVisible(welcomeText);
+        return welcomeText.getText();
     }
 }

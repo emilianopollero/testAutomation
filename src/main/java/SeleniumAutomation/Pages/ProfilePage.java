@@ -26,26 +26,31 @@ public class ProfilePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    //    Method to return String text of the first profile text
     public String getFirstProfileText() {
         waitForElementToBeVisible(firstProfileText);
         return firstProfileText.getText();
     }
 
+    //    Clicks logout link and returns a new LoginPage
     public LoginPage clickLogout() {
         waitForElementToBeClickable(logOutLink);
         logOutLink.click();
         return new LoginPage();
     }
 
+    //    Method to return String text of the second profile text
     public String getSecondProfileText() {
         waitForElementToBeVisible(secondProfileText);
         return secondProfileText.getText();
     }
 
+    //    Returns boolean true or false if the admin users table is shown or not
     public boolean checkAdminTableIsDisplayed() {
         return adminUsersTable.isDisplayed();
     }
 
+    //    Clicks on user details link and returns a new DetailsPage
     public DetailsPage clickOnDetails() {
         waitForElementToBeClickable(detailsLink);
         detailsLink.click();

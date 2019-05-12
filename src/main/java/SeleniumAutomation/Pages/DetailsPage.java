@@ -19,18 +19,22 @@ public class DetailsPage extends BasePage {
 
     public DetailsPage() {
         PageFactory.initElements(driver, this);
+        System.out.println("Going to the Details Page");
     }
 
+//    Returns a String with the name on the Details Page
     public String getNameDetailsText() {
         waitForElementToBeVisible(nameDetails);
         return nameDetails.getText();
     }
 
+//    Returns a String with the email on the Details Page
     public String getEmailDetailsText() {
         waitForElementToBeVisible(emailDetails);
         return emailDetails.getText();
     }
 
+//    Clicks the logout link and returns a new LoginPage on the Details Page
     public LoginPage clickLogout() {
         waitForElementToBeClickable(logOutLink);
         logOutLink.click();
