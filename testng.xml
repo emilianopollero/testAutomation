@@ -1,17 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
-    <test name="Nopackage" >
-        <classes>
-        </classes>
-    </test>
-
-    <test name="Regression1">
+    <listeners>
+        <listener class-name="SeleniumAutomation.BaseTest"/>
+    </listeners>
+    <test name="Regression">
         <!--<parameter name="browser" value="chrome"/>-->
         <classes>
             <class name="SeleniumAutomation.ApiTests.DeleteUserTest">
                 <!--<methods>-->
-                    <!--<include name="createUserInvalidValuesEndpointTest"/>-->
+                    <!--<include name="validUsernameInUppercaseLogin"/>-->
                 <!--</methods>-->
             </class>
             <class name="SeleniumAutomation.UITests.DetailsPageTest"/>

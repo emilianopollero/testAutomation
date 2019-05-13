@@ -5,6 +5,10 @@
 *.dll
 *.o
 *.so
+*.ini
+# Images #
+############
+*.png
 
 # Packages #
 ############
