@@ -10,6 +10,7 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
+import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
 public class SignUpPage extends BasePage {
     @FindBy(id = "username_input")
@@ -28,9 +29,16 @@ public class SignUpPage extends BasePage {
     private WebElement calendarYear;
     @FindBy(id = "submit_button")
     private WebElement submitBtn;
+    @FindBy(css = "[class^='status-module--status__text']")
+    private WebElement statusText;
 
     public SignUpPage() {
         PageFactory.initElements(driver, this);
+    }
+
+    public String getStatusText(){
+        waitForElementToBeVisible(statusText);
+        return statusText.getText();
     }
 
     //    Signs up a new user, with all the required parameters and clicks on the submit button, and returns a new NewUserPage
@@ -71,7 +79,7 @@ public class SignUpPage extends BasePage {
         enterText(usernameField, username);
     }
 
-    //         Clears password field and enters username
+    //         Clears password field and enters password
     public void enterPassword(String password) {
         System.out.println("Entering password: " + password);
         waitForElementToBeClickable(passwordField);
@@ -85,7 +93,7 @@ public class SignUpPage extends BasePage {
         enterText(nameField, name);
     }
 
-    //         Clears email field and enters username
+    //         Clears email field and enters email
     public void enterEmail(String email) {
         System.out.println("Entering email: " + email);
         waitForElementToBeClickable(emailField);

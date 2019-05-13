@@ -207,4 +207,36 @@ public class SignUpTest extends BaseTest {
         Assert.assertEquals(getTitleText(), "Sign Up");
         System.out.println("User with incorrect email was not registered");
     }
+
+    @Test(priority = 1)
+    public void alreadyPresentUsernameSignUpTest() {
+        // This case verifies system rejects signUp with an already taken username
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test verifies system rejects signUp with an already taken username");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        SignUpPage signUpPage = homePage.clickSignUp();
+        signUpPage.signUp("tester", "123456", "Emiliano",
+                "email@email.com", "19", Month.JUNE, "1982");
+        System.out.println("Validating user has not been signed");
+        Assert.assertEquals(getTitleText(), "Sign Up");
+        Assert.assertEquals("This hero is already registered. Try another one!", signUpPage.getStatusText());
+        System.out.println("User with incorrect email was not registered");
+    }
+
+    @Test(priority = 1)
+    public void alreadyPresentEmailSignUpTest() {
+        // This case verifies system rejects signUp with an already taken email
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test verifies system rejects signUp with an already taken email");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        SignUpPage signUpPage = homePage.clickSignUp();
+        signUpPage.signUp("emiliano.alejandro", "123456", "Emiliano",
+                "as.tester@wearewaes.com", "19", Month.JUNE, "1982");
+        System.out.println("Validating user has not been signed");
+        Assert.assertEquals(getTitleText(), "Sign Up");
+        Assert.assertEquals("This hero is already registered. Try another one!", signUpPage.getStatusText());
+        System.out.println("User with incorrect email was not registered");
+    }
 }
