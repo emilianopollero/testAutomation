@@ -100,73 +100,101 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
     }
 
-//    This test verifies that the system handles invalid credentials properly
+//    These tests verify that the system handles invalid credentials properly
     @Test(priority = 1)
-    public void invalidLoginTest() {
+    public void invalidLoginWrongUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("This test verifies that the system handles invalid credentials properly");
+        System.out.println("This test checks that user is not logged using a non existent username");
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        String[] cases = {"wrongUsername", "wrongPassword", "emptyUsername", "emptyPassword", "empty",
-                "caseSensitiveUsername", "caseSensitivePassword", "whitespacesInUsername", "whitespacesInPassword"};
-        for (String value : cases) {
-            switch (value) {
-                case "wrongUsername":
-                    loginPage.logIn("seven", "hero");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "wrongPassword":
-                    loginPage.logIn("admin", "seven");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "emptyUsername":
-                    loginPage.logIn("", "hero");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "emptyPassword":
-                    loginPage.logIn("admin", "");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "empty":
-                    loginPage.logIn("", "");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "caseSensitivePassword":
-                    loginPage.logIn("admin", "HERO");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "caseSensitiveUsername":
-                    loginPage.logIn("ADMIN", "hero");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "whitespacesInUsername":
-                    loginPage.logIn("admin ", "hero");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-                case "whitespacesInPassword":
-                    loginPage.logIn("admin", "hero ");
-                    System.out.println("Validating that user has not been logged in");
-                    softAssert.assertEquals("Log In", getTitleText());
-                    softAssert.assertAll();
-                    break;
-            }
-        }
+        loginPage.logIn("seven", "hero");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginWrongPasswordTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that user is not logged using an incorrect password");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("admin", "seven");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginEmptyUsernameTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that user is not logged using an empty username");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("", "hero");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginEmptyPasswordTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that user is not logged using an empty password");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("admin", "");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginEmptyCredentialsTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that user is not logged using no credentials");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("", "");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginCaseSensitivePasswordTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that password is case sensitive");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("admin", "HERO");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginWhiteSpacesInUsernameTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that whitespaces on username are not allowed");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("admin ", "hero");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
+    }
+
+    public void invalidLoginWhiteSpacesInPasswordTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("This test checks that whitespaces on password are not allowed");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        loginPage.logIn("admin", "hero ");
+        System.out.println("Validating that user has not been logged in");
+        softAssert.assertEquals("Log In", getTitleText());
+        softAssert.assertAll();
     }
 }

@@ -58,6 +58,10 @@ public class SignUpEndpointTest {
                         .when()
                         .post("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
                 "Successful create user response for invalid values");
+    }
+
+    @Test(priority = 2)
+    public void invalidCreationAlreadyTakenUsernameTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test create user with already taken username");
         System.out.println("----------------------------------------------------------------------");
@@ -72,21 +76,27 @@ public class SignUpEndpointTest {
         newUserWithSameUsername.setUsername(user.getUsername());
         Response createResponse = UserEndpoint.createUser(user);
         Assert.assertEquals(403, createResponse.getStatusCode());
-        Assert.assertEquals("Username or email already registered. Please select different values.", createResponse.jsonPath().getString("message"));
+        Assert.assertEquals("Username or email already registered. Please select different values.",
+                createResponse.jsonPath().getString("message"));
+    }
+
+    @Test(priority = 2)
+    public void invalidCreationAlreadyTakenEmailTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test create user with already taken email");
         System.out.println("----------------------------------------------------------------------");
-        user = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+        UserEndpoint user = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
                 UserEndpoint.getRandomSuperpower(),
                 "1982-06-19", false);
         user.setPassword("123456");
         UserEndpoint.createUser(user);
-        newUserWithSameUsername = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+        UserEndpoint newUserWithSameUsername = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
                 UserEndpoint.getRandomSuperpower(),
                 "1982-06-19", false);
         newUserWithSameUsername.setEmail(user.getEmail());
-        createResponse = UserEndpoint.createUser(user);
+        Response createResponse = UserEndpoint.createUser(user);
         Assert.assertEquals(403, createResponse.getStatusCode());
-        Assert.assertEquals("Username or email already registered. Please select different values.", createResponse.jsonPath().getString("message"));
+        Assert.assertEquals("Username or email already registered. Please select different values.",
+                createResponse.jsonPath().getString("message"));
     }
 }

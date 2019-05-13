@@ -56,7 +56,7 @@ public class UserInformationEndpointTest {
                 "All users endpoint returned an empty list");
     }
 
-    // This test calls the all users endpoint with invalid credentials
+    // These tests call the all users endpoint with invalid credentials
     @Test(priority = 2)
     public void invalidLoginAllUserInformationTest() {
         System.out.println("----------------------------------------------------------------------");
@@ -64,15 +64,23 @@ public class UserInformationEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("tester", "maniac").getStatusCode(),
                 "Non admin user was able to get all users information");
-        System.out.println("----------------------------------------------------------------------");
-        System.out.println("Testing non existing credentials fail to get all users information");
-        System.out.println("----------------------------------------------------------------------");
-        Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("tester1", "maniac").getStatusCode(),
-                "Non existent user was able to get all users information");
+    }
+
+    @Test(priority = 2)
+    public void noCredentialsGetAllInfoTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty credentials fail to get all users information");
         System.out.println("----------------------------------------------------------------------");
         Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("", "").getStatusCode(),
                 "Empty user credentials was able to get all users information");
+    }
+
+    @Test(priority = 2)
+    public void invalidCredentialsGetAllInfoTest(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("Testing non existing credentials fail to get all users information");
+        System.out.println("----------------------------------------------------------------------");
+        Assert.assertTrue(400 <= UserEndpoint.getAllUsersResponse("admin1", "hero").getStatusCode(),
+                "Non existent user was able to get all users information");
     }
 }

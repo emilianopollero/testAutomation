@@ -15,7 +15,7 @@ public class DetailsPageTest extends BaseTest {
 
     private SoftAssert softAssert = new SoftAssert();
 
-    // This test verified the details page information for several users
+    // These tests verify the details page information for several users
     @Test(priority = 1)
     public void validateDetailsPageUserDetails() {
         System.out.println("----------------------------------------------------------------------");
@@ -30,23 +30,33 @@ public class DetailsPageTest extends BaseTest {
         softAssert.assertEquals("Name: Amazing Admin", detailsPage.getNameDetailsText());
         softAssert.assertEquals("Email address: a.admin@wearewaes.com", detailsPage.getEmailDetailsText());
         softAssert.assertAll();
+    }
+
+    @Test(priority = 1)
+    public void validateDetailsPageDevDetailsTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the dev user");
         System.out.println("----------------------------------------------------------------------");
-        loginPage = detailsPage.clickLogout();
-        profilePage = loginPage.logIn(ECredentials.DEV_USER.getValue(), ECredentials.DEV_USER_PASS.getValue());
-        detailsPage = profilePage.clickOnDetails();
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        ProfilePage profilePage = loginPage.logIn(ECredentials.DEV_USER.getValue(), ECredentials.DEV_USER_PASS.getValue());
+        DetailsPage detailsPage = profilePage.clickOnDetails();
         System.out.println("Validating details page");
         softAssert.assertEquals("Your Details", getTitleText());
         softAssert.assertEquals("Name: Zuper Dooper Dev", detailsPage.getNameDetailsText());
         softAssert.assertEquals("Email address: zd.dev@wearewaes.com", detailsPage.getEmailDetailsText());
         softAssert.assertAll();
+    }
+
+    @Test(priority = 1)
+    public void validateDetailsPageTesterDetailsTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the tester user");
         System.out.println("----------------------------------------------------------------------");
-        loginPage = detailsPage.clickLogout();
-        profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
-        detailsPage = profilePage.clickOnDetails();
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickLogin();
+        ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
+        DetailsPage detailsPage = profilePage.clickOnDetails();
         System.out.println("Validating details page");
         softAssert.assertEquals("Your Details", getTitleText());
         softAssert.assertEquals("Name: Al Skept-Cal Tester", detailsPage.getNameDetailsText());
