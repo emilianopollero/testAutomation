@@ -7,20 +7,20 @@
     </test>
 
     <test name="Regression1">
-        <!--<parameter name="browser" value="chrome"/>-->
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="SeleniumAutomation.ApiTests.DeleteUserTest">
+            <class name="SeleniumAutomation.UITests.LoginTest">
                 <!--<methods>-->
                     <!--<include name="createUserInvalidValuesEndpointTest"/>-->
                 <!--</methods>-->
             </class>
-            <class name="SeleniumAutomation.UITests.DetailsPageTest"/>
-            <class name="SeleniumAutomation.UITests.SignUpTest"/>
-            <class name="SeleniumAutomation.UITests.LoginTest"/>
-            <class name="SeleniumAutomation.ApiTests.UpdateUserEndpointTest"/>
-            <class name="SeleniumAutomation.ApiTests.SignUpEndpointTest"/>
-            <class name="SeleniumAutomation.ApiTests.LoginEndpointTest"/>
-            <class name="SeleniumAutomation.ApiTests.UserInformationEndpointTest"/>
+            <!--<class name="SeleniumAutomation.UITests.DetailsPageTest"/>-->
+            <!--<class name="SeleniumAutomation.UITests.SignUpTest"/>-->
+            <!--<class name="SeleniumAutomation.UITests.LoginTest"/>-->
+            <!--<class name="SeleniumAutomation.ApiTests.UpdateUserEndpointTest"/>-->
+            <!--<class name="SeleniumAutomation.ApiTests.SignUpEndpointTest"/>-->
+            <!--<class name="SeleniumAutomation.ApiTests.LoginEndpointTest"/>-->
+            <!--<class name="SeleniumAutomation.ApiTests.UserInformationEndpointTest"/>-->
         </classes>
     </test>
 </suite>

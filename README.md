@@ -1,9 +1,12 @@
 # testAutomation
 Suite can be ran by using mvn clean test on project root folder, -Dbrowser can be used to use options "edge", "chrome" or "headless"
 
-For Edge browser, edge version must be 17.17134, this is a driver limitation
+Java version 1.8 is required to run this suite
 
-Example: `mvn clean test -Dbrowser=chrome`
+For Edge browser, edge version must be 17.17134, this is a driver limitation
+For Linux/Mac, Chrome version 75 is needed
+
+Example: `mvn clean test -Dbrowser=headless`
 
 Test report can be found under /target/surefire-reports/emailable-report.html
 
