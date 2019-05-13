@@ -16,7 +16,7 @@ import static SeleniumAutomation.Api.UserEndpoint.deleteUser;
 public class DeleteUserTest {
 
     // This test calls the delete endpoint for a user, checks for a 200 response code and validates user has been removed
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate users can be deleted")
     public void userDeleteTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that a user can be deleted");
@@ -38,7 +38,7 @@ public class DeleteUserTest {
     }
 
     // This test calls the delete endpoint with non admin user and checks that the user is not deleted
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate non admin users cannot delete another user")
     public void invalidCredentialsUserDeleteTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that non admin users cannot delete");
@@ -60,7 +60,7 @@ public class DeleteUserTest {
     }
 
     // This test calls the delete endpoint with a non existent user and checks system error handling
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate deleting a non existent user error handling")
     public void nonExistentUserDeleteTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing deleting a non existent user");

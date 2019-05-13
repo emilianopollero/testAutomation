@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class UpdateUserEndpointTest {
 
     // This test calls the update endpoint with the different users, checks for a 200 response code and validates all values
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that name can be updated")
     public void updateUserNameEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user name can be updated");
@@ -31,7 +31,7 @@ public class UpdateUserEndpointTest {
         Assert.assertEquals(newUser.getName(), updatedUser.getName());
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that date of birth can be updated")
     public void updateDateOfBirthEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user date of birth can be updated");
@@ -50,7 +50,7 @@ public class UpdateUserEndpointTest {
         Assert.assertEquals(newUser.getDateOfBirth(), updatedUser.getDateOfBirth());
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that admin status can be updated")
     public void updateAdminStatusEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user admin status can be updated");
@@ -69,7 +69,7 @@ public class UpdateUserEndpointTest {
         Assert.assertEquals(newUser.getisAdmin(), updatedUser.getisAdmin());
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that superpower can be updated")
     public void updateSuperpowerEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user superpower can be updated");
@@ -88,7 +88,7 @@ public class UpdateUserEndpointTest {
         Assert.assertEquals(newUser.getSuperpower(), updatedUser.getSuperpower());
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that password can be updated")
     public void updatePasswordEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user password can be updated");
@@ -104,7 +104,7 @@ public class UpdateUserEndpointTest {
         Assert.assertNotEquals(newUser.getPassword(), oldPassword);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that email can be updated")
     public void updateEmailEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user email can be updated");
@@ -124,7 +124,7 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint with invalid values and checks system response
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that username can not be updated")
     public void usernameCannotBeUpdatedTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user username cannot be updated");
@@ -141,7 +141,7 @@ public class UpdateUserEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate that user id can not be updated")
     public void userIdCannotBeUpdatedTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user id cannot be updated");
@@ -157,10 +157,10 @@ public class UpdateUserEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate that system rejects invalid email format update")
     public void invalidEmailFormatTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
-        System.out.println("Validating that email rejects invalid format");
+        System.out.println("Validating that system rejects invalid email format");
         System.out.println("----------------------------------------------------------------------");
         UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
                 UserEndpoint.getRandomSuperpower(),
@@ -173,7 +173,7 @@ public class UpdateUserEndpointTest {
                 "format with response code: " + response.getStatusCode());
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate that system rejects invalid date format update")
     public void invalidDateOfBirthFormatTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user date of birth rejects invalid date");
@@ -190,7 +190,7 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint with non admin credentials and validates that update operation is not allowed
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate that non admin users cannot update other users")
     public void validateOnlyAdminUserCanUpdate() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that non admin users cannot update other users");
@@ -214,7 +214,7 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint for a non existent user and checks system response
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate system response when updating a non existent user")
     public void nonExistentUserUpdateTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing updating a non existent user");

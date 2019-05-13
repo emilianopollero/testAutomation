@@ -16,7 +16,7 @@ public class DetailsPageTest extends BaseTest {
     private SoftAssert softAssert = new SoftAssert();
 
     // These tests verify the details page information for several users
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate the profile page information for the admin user")
     public void validateDetailsPageUserDetails() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the admin user");
@@ -32,7 +32,7 @@ public class DetailsPageTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate the profile page information for the dev user")
     public void validateDetailsPageDevDetailsTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the dev user");
@@ -48,7 +48,7 @@ public class DetailsPageTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate the profile page information for the tester user")
     public void validateDetailsPageTesterDetailsTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the tester user");

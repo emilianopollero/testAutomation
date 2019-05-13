@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
     private SoftAssert softAssert = new SoftAssert();
 
     //    This test verifies admin user can login and profile page for admin user is presented
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate admin user can login and proper profile page is shown")
     public void validAdminLoginTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that admin users can login using valid credentials and that the proper " +
@@ -37,7 +37,7 @@ public class LoginTest extends BaseTest {
     }
 
     //    This test verifies dev user can login and profile page for dev user is presented
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate dev user can login and proper profile page is shown")
     public void validDevLoginTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that dev users can login using valid credentials and that the proper " +
@@ -55,7 +55,7 @@ public class LoginTest extends BaseTest {
     }
 
     //    This test verifies tester user can login and profile page for tester user is presented
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate tester user can login and proper profile page is shown")
     public void validTesterLoginTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that tester users can login using valid credentials and that the proper " +
@@ -73,7 +73,7 @@ public class LoginTest extends BaseTest {
     }
 
     //    This test verifies user can log out of the application
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate user can logout")
     public void logOutTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that the user can log out of the application");
@@ -87,7 +87,7 @@ public class LoginTest extends BaseTest {
     }
 
     //    This test verifies that username is not case sensitive
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate username is not case sensitive")
     //No specific requirement for this
     public void validUsernameInUppercaseLogin() throws InterruptedException {
         System.out.println("----------------------------------------------------------------------");
@@ -101,7 +101,7 @@ public class LoginTest extends BaseTest {
     }
 
 //    These tests verify that the system handles invalid credentials properly
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate incorrect username login")
     public void invalidLoginWrongUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that user is not logged using a non existent username");
@@ -114,6 +114,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate incorrect password login")
     public void invalidLoginWrongPasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that user is not logged using an incorrect password");
@@ -126,6 +127,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate empty username login")
     public void invalidLoginEmptyUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that user is not logged using an empty username");
@@ -138,6 +140,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate empty password login")
     public void invalidLoginEmptyPasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that user is not logged using an empty password");
@@ -150,6 +153,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate empty credentials login")
     public void invalidLoginEmptyCredentialsTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that user is not logged using no credentials");
@@ -162,6 +166,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate login password is case sensitive")
     public void invalidLoginCaseSensitivePasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that password is case sensitive");
@@ -174,6 +179,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate no whitespaces are allowed on username")
     public void invalidLoginWhiteSpacesInUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that whitespaces on username are not allowed");
@@ -186,6 +192,7 @@ public class LoginTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(priority = 1, description = "UI: Validate no whitespaces are allowed on password")
     public void invalidLoginWhiteSpacesInPasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test checks that whitespaces on password are not allowed");

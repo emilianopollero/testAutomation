@@ -14,7 +14,7 @@ import static SeleniumAutomation.BasePage.getTitleText;
 public class SignUpTest extends BaseTest {
 
     // This test verifies users can signUp and the proper profile page is shown to them
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate users can sign up and the proper profile page is shown to them")
     public void validateUserCanSignUp() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies users can signUp and the proper profile page is shown to them");
@@ -28,7 +28,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("Profile page for new user is correct");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate username is required on sign up")
     public void requiredSignUpFieldsUsernameTest() {
         // This case verifies that username is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -43,7 +43,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no username was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate password is required on sign up")
     public void requiredSignUpFieldsPasswordTest() {
         // This case verifies that password is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -58,7 +58,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no password was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate name is required on sign up")
     public void requiredSignUpFieldsNameTest() {
         // This case verifies that name is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -73,7 +73,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no name was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email is required on sign up")
     public void requiredSignUpFieldsEmailTest() {
         // This case verifies that email is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -88,7 +88,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate day is required on sign up")
     public void requiredSignUpFieldsDayTest() {
         // This case verifies that day is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -103,7 +103,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate month is required on sign up")
     public void requiredSignUpFieldsMonthTest() {
         // This case verifies that month is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -118,7 +118,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate year is required on sign up")
     public void requiredSignUpFieldsYearTest() {
         // This case verifies that year is mandatory
         System.out.println("----------------------------------------------------------------------");
@@ -133,7 +133,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with no year was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email is required on sign up")
     public void incorrectEmailFormatTest() {
         // This case verifies email format
         System.out.println("----------------------------------------------------------------------");
@@ -148,7 +148,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email should have something before @ symbol")
     public void incorrectEmailFormatNothingBeforeAtTest() {
         // This case verifies email should have something before @ symbol
         System.out.println("----------------------------------------------------------------------");
@@ -163,7 +163,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email should have something after @ symbol")
     public void incorrectEmailFormatNothingAfterAtTest() {
         // This case verifies email should have something after @ symbol
         System.out.println("----------------------------------------------------------------------");
@@ -178,7 +178,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email has not invalid characters before @ symbol")
     public void incorrectEmailFormatInvalidCharactersBeforeAtTest() {
         // This case verifies email has not invalid characters before @ symbol
         System.out.println("----------------------------------------------------------------------");
@@ -193,7 +193,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate email has not invalid characters after @ symbol")
     public void incorrectEmailFormatInvalidCharactersAfterAtTest() {
         // This case verifies email has not invalid characters after @ symbol
         System.out.println("----------------------------------------------------------------------");
@@ -208,7 +208,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate system rejects signUp with an already taken username")
     public void alreadyPresentUsernameSignUpTest() {
         // This case verifies system rejects signUp with an already taken username
         System.out.println("----------------------------------------------------------------------");
@@ -224,7 +224,7 @@ public class SignUpTest extends BaseTest {
         System.out.println("User with incorrect email was not registered");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "UI: Validate system rejects signUp with an already taken email")
     public void alreadyPresentEmailSignUpTest() {
         // This case verifies system rejects signUp with an already taken email
         System.out.println("----------------------------------------------------------------------");

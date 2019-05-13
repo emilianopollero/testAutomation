@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class SignUpEndpointTest {
 
     // This test calls the signUp endpoint, creates a new user and validates the created user values
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate creation of new users")
     public void createUserEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test creation of new users");
@@ -37,8 +37,8 @@ public class SignUpEndpointTest {
     }
 
     // This test calls the signUp endpoint with invalid values
-    @Test(priority = 2)
-    public void createUserInvalidValuesEndpointTest() throws JsonProcessingException {
+    @Test(priority = 2, description = "API:  Validate system response for incorrect type values")
+    public void createUserInvalidValuesEndpointTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test invalid values on post body");
         System.out.println("----------------------------------------------------------------------");
@@ -60,7 +60,7 @@ public class SignUpEndpointTest {
                 "Successful create user response for invalid values");
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate system response when creating an user with an already used username")
     public void invalidCreationAlreadyTakenUsernameTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test create user with already taken username");
@@ -80,7 +80,7 @@ public class SignUpEndpointTest {
                 createResponse.jsonPath().getString("message"));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate system response when creating an user with an already used email")
     public void invalidCreationAlreadyTakenEmailTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test create user with already taken email");

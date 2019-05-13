@@ -59,7 +59,7 @@ public class BaseTest implements ITestListener {
 
     public void onTestStart(ITestResult result) {
         System.out.println("on test start");
-        test = reports.createTest(result.getMethod().getMethodName());
+        test = reports.createTest(result.getMethod().getDescription());
         test.log(Status.INFO, result.getMethod().getMethodName() + "test is started");
     }
     public void onTestSuccess(ITestResult result) {
@@ -70,16 +70,18 @@ public class BaseTest implements ITestListener {
         System.out.println("on test failure");
         test.log(Status.FAIL, result.getMethod().getMethodName() + " test is failed");
         test.log(Status.FAIL, result.getThrowable());
-        try {
-            TakesScreenshot ts = (TakesScreenshot) Driver.getInstance();
-            File src = ts.getScreenshotAs(OutputType.FILE);
-            String dest = System.getProperty("user.dir") + "/screenshots/" + result.getMethod().getMethodName() + ".png";
-            File target = new File(dest);
-            FileUtils.copyFile(src, target);
+        if (!result.getTestClass().getName().contains("ApiTests")){
+            try {
+                TakesScreenshot ts = (TakesScreenshot) Driver.getInstance();
+                File src = ts.getScreenshotAs(OutputType.FILE);
+                String dest = System.getProperty("user.dir") + "/screenshots/" + result.getMethod().getMethodName() + ".png";
+                File target = new File(dest);
+                FileUtils.copyFile(src, target);
 //            test.log(Status.FAIL, "Screenshot").addScreenCaptureFromPath("C:\\testAutomation\\screenshots\\validUsernameInUppercaseLogin.jpg");
-            test.addScreenCaptureFromPath(dest);
-        } catch (IOException e) {
-            e.printStackTrace();
+                test.addScreenCaptureFromPath(dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void onTestSkipped(ITestResult result) {

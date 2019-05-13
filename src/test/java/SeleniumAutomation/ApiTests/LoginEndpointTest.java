@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class LoginEndpointTest {
 
     // This test calls the login api with the different users, checks for a 200 response code and validates all values
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate user can successfully login")
     public void successfulLoginTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for admin user");
@@ -28,7 +28,7 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate newly created non admin user can login")
     public void successfulLoginNewNonAdminUser() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for new non admin user");
@@ -51,7 +51,7 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate successful login with uppercase username")
     public void successfulLoginUppercaseUsername(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for admin user with uppercase username");
@@ -70,7 +70,7 @@ public class LoginEndpointTest {
     }
 
     // Call login endpoint with invalid credentials
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API: Validate system response for invalid credentials")
     public void invalidLoginTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing invalid credentials");
@@ -82,7 +82,7 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate system response for empty username")
     public void negativeLoginEmptyUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty username");
@@ -94,7 +94,7 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate system response for empty password")
     public void negativeLoginEmptyPasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty password");
@@ -106,7 +106,7 @@ public class LoginEndpointTest {
         response.prettyPrint();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "API:  Validate system response for empty credentials")
     public void negativeLoginEmptyCredentialsTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty credentials");

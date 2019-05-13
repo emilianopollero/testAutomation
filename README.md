@@ -8,7 +8,7 @@ For Linux/Mac, Chrome version 75 is needed
 
 Example: `mvn clean test -Dbrowser=headless`
 
-Test report can be found under /target/surefire-reports/emailable-report.html
+Test report can be found under /target/extent-report/testReport.html
 
 For debugging purposes, if you want to run this suite by running testng.xml file, you must uncomment
 line 10 <parameter name="browser" value="chrome"/> after debugging is done, for the maven command to pick the =Dbrowser tag
