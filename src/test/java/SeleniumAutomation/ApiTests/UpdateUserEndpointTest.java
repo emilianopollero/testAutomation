@@ -9,19 +9,17 @@ import org.apache.http.entity.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Instant;
-
 public class UpdateUserEndpointTest {
 
     // This test calls the update endpoint with the different users, checks for a 200 response code and validates all values
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void updateUserEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user name can be updated");
         System.out.println("----------------------------------------------------------------------");
         UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() +
-                "@test.com", UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setName("updated");
@@ -35,8 +33,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that user email can be updated");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setEmail("updated@email.com");
@@ -49,17 +47,20 @@ public class UpdateUserEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user password can be updated");
         System.out.println("----------------------------------------------------------------------");
-        UserEndpoint wizardUser = (UserEndpoint) UserEndpoint.getAllUsers("admin", "hero").get(1);
-        String newPassword = Instant.now().toString();
-        wizardUser.setPassword(newPassword);
-        UserEndpoint.updateUser("admin", "hero", wizardUser);
-        Assert.assertEquals(200, UserEndpoint.login("dev", newPassword).getStatusCode());
+        newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),"1982-06-19", false);
+        newUser.setPassword("123456");
+        UserEndpoint.createUser(newUser);
+        String newPassword = "newPassword";
+        newUser.setPassword(newPassword);
+        UserEndpoint.updateUser("admin", "hero", newUser);
+        Assert.assertEquals(200, UserEndpoint.login(newUser.getUsername(), newPassword).getStatusCode());
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user superpower can be updated");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setSuperpower("updated");
@@ -73,8 +74,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that user admin status can be updated");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setisAdmin(true);
@@ -88,8 +89,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that user date of birth can be updated");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setDateOfBirth("1999-06-18");
@@ -102,14 +103,14 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint with invalid values and checks system response
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void invalidFieldsUpdateTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that user username cannot be updated");
         System.out.println("----------------------------------------------------------------------");
         UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setUsername("updated");
@@ -121,8 +122,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that user date of birth rejects invalid date");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setDateOfBirth("updated");
@@ -133,8 +134,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that user id cannot be updated");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setId(UserEndpoint.getLastUserId() + 100);
@@ -145,8 +146,8 @@ public class UpdateUserEndpointTest {
         System.out.println("Validating that email rejects invalid format");
         System.out.println("----------------------------------------------------------------------");
         newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setEmail("updated");
@@ -156,18 +157,23 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint with non admin credentials and validates that update operation is not allowed
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void validateOnlyAdminUserCanUpdate() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Validating that non admin users cannot update other users");
         System.out.println("----------------------------------------------------------------------");
-        UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
-                "emiliano.pollero" + Instant.now(), "test" + Instant.now() + "@test.com",
-                UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
-        newUser.setPassword("123456");
-        UserEndpoint.createUser(newUser);
-        newUser.setisAdmin(true);
-        Response response = UserEndpoint.updateUser("tester", "maniac", newUser);
+        UserEndpoint userUpdating = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        userUpdating.setPassword("123456");
+        UserEndpoint.createUser(userUpdating);
+        UserEndpoint userToBeUpdated = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        userToBeUpdated.setPassword("123456");
+        UserEndpoint.createUser(userToBeUpdated);
+        userToBeUpdated.setisAdmin(true);
+        Response response = UserEndpoint.updateUser(userUpdating.getUsername(), userUpdating.getPassword(), userToBeUpdated);
         System.out.println("Response is");
         response.prettyPrint();
         Assert.assertTrue(400 <= response.getStatusCode(), "Non admin user performed an update operation and was " +
@@ -175,7 +181,7 @@ public class UpdateUserEndpointTest {
     }
 
     // This test calls the update endpoint for a non existent user and checks system response
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void nonExistentUserUpdateTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing updating a non existent user");

@@ -22,6 +22,7 @@ public class BaseTest {
     @BeforeMethod
     public void openBrowser() {
         Driver.getInstance();
+        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         Driver.getInstance().manage().deleteAllCookies();
         Driver.getInstance().manage().window().maximize();
         BasePage.setDriver(Driver.getInstance());

@@ -11,7 +11,7 @@
         <classes>
             <class name="SeleniumAutomation.ApiTests.DeleteUserTest">
                 <!--<methods>-->
-                    <!--<include name="invalidCredentialsUserDeleteTest"/>-->
+                    <!--<include name="createUserInvalidValuesEndpointTest"/>-->
                 <!--</methods>-->
             </class>
             <class name="SeleniumAutomation.UITests.DetailsPageTest"/>

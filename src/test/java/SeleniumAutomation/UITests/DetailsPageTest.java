@@ -6,7 +6,6 @@ import SeleniumAutomation.Pages.DetailsPage;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.LoginPage;
 import SeleniumAutomation.Pages.ProfilePage;
-import SeleniumAutomation.Utils.Driver;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -22,7 +21,6 @@ public class DetailsPageTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verified the profile page information for the admin user");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(ECredentials.ADMIN_USER.getValue(), ECredentials.ADMIN_USER_PASS.getValue());

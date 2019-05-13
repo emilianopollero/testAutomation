@@ -8,24 +8,10 @@ import org.testng.annotations.Test;
 public class UserInformationEndpointTest {
 
     // This test calls the user information endpoint and checks correct values are returned
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void getUserInformationTest() {
-        System.out.println("Testing user details response for dev user");
-        Response response = UserEndpoint.userDetails("dev");
-        Assert.assertEquals(200, response.getStatusCode());
-        UserEndpoint devUserEndpoint = new UserEndpoint(response.jsonPath().get());
-        Assert.assertEquals(devUserEndpoint.getId(), 2);
-        Assert.assertEquals(devUserEndpoint.getName(), "Zuper Dooper Dev");
-        Assert.assertEquals(devUserEndpoint.getUsername(), "dev");
-        Assert.assertEquals(devUserEndpoint.getEmail(), "zd.dev@wearewaes.com");
-        Assert.assertEquals(devUserEndpoint.getSuperpower(), "Debug a repellent factory storage.");
-        Assert.assertEquals(devUserEndpoint.getDateOfBirth(), "1999-10-10");
-        Assert.assertFalse(devUserEndpoint.getisAdmin());
-        System.out.println("User information response for dev user verified");
-        response.prettyPrint();
-
         System.out.println("Testing user details response for admin user");
-        response = UserEndpoint.userDetails("admin");
+        Response response = UserEndpoint.userDetails("admin");
         Assert.assertEquals(200, response.getStatusCode());
         UserEndpoint adminUserEndpoint = new UserEndpoint(response.jsonPath().get());
         Assert.assertEquals(adminUserEndpoint.getId(), 1);
@@ -37,24 +23,10 @@ public class UserInformationEndpointTest {
         Assert.assertTrue(adminUserEndpoint.getisAdmin());
         System.out.println("User information response for admin user verified");
         response.prettyPrint();
-
-        System.out.println("Testing user details response for tester user");
-        response = UserEndpoint.userDetails("tester");
-        Assert.assertEquals(200, response.getStatusCode());
-        UserEndpoint testerUserEndpoint = new UserEndpoint(response.jsonPath().get());
-        Assert.assertEquals(testerUserEndpoint.getId(), 3);
-        Assert.assertEquals(testerUserEndpoint.getName(), "Al Skept-Cal Tester");
-        Assert.assertEquals(testerUserEndpoint.getUsername(), "tester");
-        Assert.assertEquals(testerUserEndpoint.getEmail(), "as.tester@wearewaes.com");
-        Assert.assertEquals(testerUserEndpoint.getSuperpower(), "Voltage AND Current.");
-        Assert.assertEquals(testerUserEndpoint.getDateOfBirth(), "2014-07-15");
-        Assert.assertFalse(testerUserEndpoint.getisAdmin());
-        System.out.println("User information response for tester user verified");
-        response.prettyPrint();
     }
 
     // This test calls the user api with invalid values
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void userInformationInvalidUserEndpointTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing user details response for non existent user");
@@ -75,7 +47,7 @@ public class UserInformationEndpointTest {
     }
 
     // This test calls the all users endpoint with valid credentials and checks that it retrieves non empty list of users
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void getAllUsersInformationTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing that all users endpoint returns a list of users");
@@ -85,7 +57,7 @@ public class UserInformationEndpointTest {
     }
 
     // This test calls the all users endpoint with invalid credentials
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void invalidLoginAllUserInformationTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing non admin user cannot retrieve all users information");

@@ -4,7 +4,6 @@ import SeleniumAutomation.BaseTest;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.NewUserPage;
 import SeleniumAutomation.Pages.SignUpPage;
-import SeleniumAutomation.Utils.Driver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,7 +19,6 @@ public class SignUpTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies users can signUp and the proper profile page is shown to them");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
         NewUserPage newUserPage = signUpPage.signUp("emiliano.pollero", "123456", "Emiliano",
@@ -36,7 +34,6 @@ public class SignUpTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test validates required signUp fields");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
         String[] cases = {"noUsername", "noPassword", "noName", "noEmail", "noDay",

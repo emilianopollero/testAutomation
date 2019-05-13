@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import static SeleniumAutomation.BasePage.getRandomNumber;
+
 public class UserEndpoint {
     private int id;
     private String name;
@@ -31,12 +33,12 @@ public class UserEndpoint {
         this.isAdmin = (boolean) loginResponse.get("isAdmin");
     }
 
-    public UserEndpoint(int id, String name, String username, String email, String superpower, String dateOfBirth,
+    public UserEndpoint(int id, String name, String superpower, String dateOfBirth,
                         boolean isAdmin) {
         this.id = id;
         this.name = name;
-        this.username = username;
-        this.email = email;
+        this.username = "username" + getRandomNumber();
+        this.email = "test"  + getRandomNumber() + "@test.com";
         this.superpower = superpower;
         this.dateOfBirth = dateOfBirth;
         this.isAdmin = isAdmin;

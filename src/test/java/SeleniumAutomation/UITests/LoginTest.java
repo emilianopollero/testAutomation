@@ -5,7 +5,6 @@ import SeleniumAutomation.Enums.ECredentials;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.LoginPage;
 import SeleniumAutomation.Pages.ProfilePage;
-import SeleniumAutomation.Utils.Driver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -24,7 +23,6 @@ public class LoginTest extends BaseTest {
         System.out.println("This test verifies that admin users can login using valid credentials and that the proper " +
                 "profile page is shown to them");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(ECredentials.ADMIN_USER.getValue(), ECredentials.ADMIN_USER_PASS.getValue());
@@ -45,7 +43,6 @@ public class LoginTest extends BaseTest {
         System.out.println("This test verifies that dev users can login using valid credentials and that the proper " +
                 "profile page is shown to them");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(ECredentials.DEV_USER.getValue(), ECredentials.DEV_USER_PASS.getValue());
@@ -64,7 +61,6 @@ public class LoginTest extends BaseTest {
         System.out.println("This test verifies that tester users can login using valid credentials and that the proper " +
                 "profile page is shown to them");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
@@ -82,7 +78,6 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that the user can log out of the application");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
@@ -98,7 +93,6 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that username is not case sensitive");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         loginPage.logIn(ECredentials.TESTER_USER.getValue().toUpperCase(), ECredentials.TESTER_USER_PASS.getValue());
@@ -107,12 +101,11 @@ public class LoginTest extends BaseTest {
     }
 
 //    This test verifies that the system handles invalid credentials properly
-    @Test(priority = 2)
+    @Test(priority = 1)
     public void invalidLoginTest() {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("This test verifies that the system handles invalid credentials properly");
         System.out.println("----------------------------------------------------------------------");
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         String[] cases = {"wrongUsername", "wrongPassword", "emptyUsername", "emptyPassword", "empty",

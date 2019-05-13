@@ -9,18 +9,17 @@ import org.apache.http.entity.ContentType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Instant;
-
 public class SignUpEndpointTest {
 
     // This test calls the signUp endpoint, creates a new user and validates the created user values
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void createUserEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test creation of new users");
         System.out.println("----------------------------------------------------------------------");
-        UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(), "emiliano.pollero"
-                + Instant.now(), "test" + Instant.now() + "@test.com", UserEndpoint.getRandomSuperpower(), "1982-06-19", false);
+        UserEndpoint newUser = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
         newUser.setPassword("123456");
         Response response = UserEndpoint.createUser(newUser);
         System.out.println("Response is");
@@ -38,8 +37,8 @@ public class SignUpEndpointTest {
     }
 
     // This test calls the signUp endpoint with invalid values
-    @Test(priority = 1)
-    public void createUserInvalidValuesEndpointTest() {
+    @Test(priority = 2)
+    public void createUserInvalidValuesEndpointTest() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Test invalid values on post body");
         System.out.println("----------------------------------------------------------------------");
@@ -59,5 +58,35 @@ public class SignUpEndpointTest {
                         .when()
                         .post("http://localhost:8081/waesheroes/api/v1/users").getStatusCode(),
                 "Successful create user response for invalid values");
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("Test create user with already taken username");
+        System.out.println("----------------------------------------------------------------------");
+        UserEndpoint user = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        user.setPassword("123456");
+        UserEndpoint.createUser(user);
+        UserEndpoint newUserWithSameUsername = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        newUserWithSameUsername.setUsername(user.getUsername());
+        Response createResponse = UserEndpoint.createUser(user);
+        Assert.assertEquals(403, createResponse.getStatusCode());
+        Assert.assertEquals("Username or email already registered. Please select different values.", createResponse.jsonPath().getString("message"));
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("Test create user with already taken email");
+        System.out.println("----------------------------------------------------------------------");
+        user = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        user.setPassword("123456");
+        UserEndpoint.createUser(user);
+        newUserWithSameUsername = new UserEndpoint(UserEndpoint.getLastUserId() + 1, UserEndpoint.getRandomName(),
+                UserEndpoint.getRandomSuperpower(),
+                "1982-06-19", false);
+        newUserWithSameUsername.setEmail(user.getEmail());
+        createResponse = UserEndpoint.createUser(user);
+        Assert.assertEquals(403, createResponse.getStatusCode());
+        Assert.assertEquals("Username or email already registered. Please select different values.", createResponse.jsonPath().getString("message"));
     }
 }

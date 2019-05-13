@@ -4,6 +4,8 @@ import SeleniumAutomation.Utils.Driver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
 public class BasePage {
@@ -70,5 +72,9 @@ public class BasePage {
         }
         waitForElementToBeVisible(returnNonStaleElement(By.cssSelector("main h1")));
         return driver.findElement(By.cssSelector("main h1")).getText();
+    }
+
+    public static int getRandomNumber(){
+        return ThreadLocalRandom.current().nextInt(1,10000000);
     }
 }

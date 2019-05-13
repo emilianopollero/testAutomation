@@ -3,6 +3,8 @@ package SeleniumAutomation.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import java.io.File;
 
@@ -38,6 +40,15 @@ public class Driver {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
+                break;
+            case "edge":
+                file = new File("/testAutomation/drivers/MicrosoftWebDriver.exe");
+                path = file.getAbsolutePath();
+                System.out.println(path);
+                System.setProperty("webdriver.edge.driver", path);
+                EdgeOptions options = new EdgeOptions();
+                options.setCapability("InPrivate", true);
+                driver = new EdgeDriver(options);
                 break;
         }
         return driver;
