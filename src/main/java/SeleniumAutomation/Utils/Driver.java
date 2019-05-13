@@ -37,11 +37,11 @@ public class Driver {
             case Windows:
                 switch (browserName.toLowerCase()) {
                     case "chrome":
-                        System.setProperty("webdriver.chrome.driver", "/testAutomation/drivers/chromedriver.exe");
+                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/chromedriver.exe");
                         driver = new ChromeDriver();
                         break;
                     case "headless":
-                        File file = new File("/testAutomation/drivers/chromedriver.exe");
+                        File file = new File(System.getProperty("user.dir")+ "/drivers/chromedriver.exe");
                         String path = file.getAbsolutePath();
                         System.out.println(path);
                         System.setProperty("webdriver.chrome.driver", path);
@@ -50,7 +50,7 @@ public class Driver {
                         driver = new ChromeDriver(chromeOptions);
                         break;
                     case "edge":
-                        file = new File("/testAutomation/drivers/MicrosoftWebDriver.exe");
+                        file = new File(System.getProperty("user.dir")+ "/drivers/MicrosoftWebDriver.exe");
                         path = file.getAbsolutePath();
                         System.out.println(path);
                         System.setProperty("webdriver.edge.driver", path);
@@ -63,17 +63,17 @@ public class Driver {
             case Linux:
                 switch (browserName){
                     case "chrome":
-                        Path path = Paths.get("/testAutomation/drivers/chromedriver");
+                        Path path = Paths.get(System.getProperty("user.dir")+ "/drivers/chromedriver");
                         try {
                             Files.setPosixFilePermissions(path, PosixFilePermissions.fromString("r-xr-xr-x"));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        System.setProperty("webdriver.chrome.driver", "/testAutomation/drivers/chromedriver.exe");
+                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/chromedriver.exe");
                         driver = new ChromeDriver();
                         break;
                     case "headless":
-                        File file = new File("/testAutomation/drivers/chromedriver");
+                        File file = new File(System.getProperty("user.dir")+ "/drivers/chromedriver");
                         String stringPath = file.getAbsolutePath();
                         System.setProperty("webdriver.chrome.driver", stringPath);
                         ChromeOptions chromeOptions = new ChromeOptions();
@@ -85,11 +85,11 @@ public class Driver {
                 switch (browserName)
                 {
                     case "Chrome": //CHROME DRIVER
-                        System.setProperty("webdriver.chrome.driver", "driver/macChromeDriver");
+                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/macChromeDriver");
                         driver = new ChromeDriver();
                         break;
                     case "Headless":
-                        System.setProperty("webdriver.chrome.driver", "driver/macChromeDriver");
+                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/macChromeDriver");
                         ChromeOptions chromeOptions = new ChromeOptions();
                         chromeOptions.addArguments("--headless");
                         driver = new ChromeDriver(chromeOptions);

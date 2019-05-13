@@ -10,7 +10,7 @@ public class LoginEndpointTest {
 
     // This test calls the login api with the different users, checks for a 200 response code and validates all values
     @Test(priority = 2)
-    public void successfulLoginTest() throws JsonProcessingException {
+    public void successfulLoginTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for admin user");
         System.out.println("----------------------------------------------------------------------");
@@ -26,20 +26,10 @@ public class LoginEndpointTest {
         Assert.assertTrue(adminLoginResponse.getisAdmin());
         System.out.println("Login response for admin user verified");
         response.prettyPrint();
-        System.out.println("----------------------------------------------------------------------");
-        System.out.println("Testing login response for admin user with uppercase username");
-        System.out.println("----------------------------------------------------------------------");
-        response = UserEndpoint.login("ADMIN", "hero");
-        Assert.assertEquals(200, response.getStatusCode());
-        adminLoginResponse = new UserEndpoint(response.jsonPath().get());
-        Assert.assertEquals(adminLoginResponse.getId(), 1);
-        Assert.assertEquals(adminLoginResponse.getName(), "Amazing Admin");
-        Assert.assertEquals(adminLoginResponse.getUsername(), "admin");
-        Assert.assertEquals(adminLoginResponse.getEmail(), "a.admin@wearewaes.com");
-        Assert.assertEquals(adminLoginResponse.getSuperpower(), "Change the course of a waterfall.");
-        Assert.assertEquals(adminLoginResponse.getDateOfBirth(), "1984-09-18");
-        Assert.assertTrue(adminLoginResponse.getisAdmin());
-        response.prettyPrint();
+    }
+
+    @Test(priority = 2)
+    public void successfulLoginNewNonAdminUser() throws JsonProcessingException {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for new non admin user");
         System.out.println("----------------------------------------------------------------------");
@@ -48,7 +38,7 @@ public class LoginEndpointTest {
                 "1982-06-19", false);
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
-        response = UserEndpoint.login(newUser.getUsername(), newUser.getPassword());
+        Response response = UserEndpoint.login(newUser.getUsername(), newUser.getPassword());
         Assert.assertEquals(200, response.getStatusCode());
         UserEndpoint newUserLoginResponse = new UserEndpoint(response.jsonPath().get());
         Assert.assertEquals(newUserLoginResponse.getId(), newUser.getId());
@@ -58,6 +48,24 @@ public class LoginEndpointTest {
         Assert.assertEquals(newUserLoginResponse.getSuperpower(), newUser.getSuperpower());
         Assert.assertEquals(newUserLoginResponse.getDateOfBirth(), newUser.getDateOfBirth());
         Assert.assertFalse(newUserLoginResponse.getisAdmin());
+        response.prettyPrint();
+    }
+
+    @Test(priority = 2)
+    public void successfulLoginUppercaseUsername(){
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("Testing login response for admin user with uppercase username");
+        System.out.println("----------------------------------------------------------------------");
+        Response response = UserEndpoint.login("ADMIN", "hero");
+        Assert.assertEquals(200, response.getStatusCode());
+        UserEndpoint adminLoginResponse = new UserEndpoint(response.jsonPath().get());
+        Assert.assertEquals(adminLoginResponse.getId(), 1);
+        Assert.assertEquals(adminLoginResponse.getName(), "Amazing Admin");
+        Assert.assertEquals(adminLoginResponse.getUsername(), "admin");
+        Assert.assertEquals(adminLoginResponse.getEmail(), "a.admin@wearewaes.com");
+        Assert.assertEquals(adminLoginResponse.getSuperpower(), "Change the course of a waterfall.");
+        Assert.assertEquals(adminLoginResponse.getDateOfBirth(), "1984-09-18");
+        Assert.assertTrue(adminLoginResponse.getisAdmin());
         response.prettyPrint();
     }
 
@@ -72,26 +80,38 @@ public class LoginEndpointTest {
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
+    }
+
+    @Test(priority = 2)
+    public void negativeLoginEmptyUsernameTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty username");
         System.out.println("----------------------------------------------------------------------");
-        response = UserEndpoint.login("", "wizard");
+        Response response = UserEndpoint.login("", "hero");
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
+    }
+
+    @Test(priority = 2)
+    public void negativeLoginEmptyPasswordTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty password");
         System.out.println("----------------------------------------------------------------------");
-        response = UserEndpoint.login("dev", "");
+        Response response = UserEndpoint.login("admin", "");
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
         response.prettyPrint();
+    }
+
+    @Test(priority = 2)
+    public void negativeLoginEmptyCredentialsTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty credentials");
         System.out.println("----------------------------------------------------------------------");
-        response = UserEndpoint.login("", "");
+        Response response = UserEndpoint.login("", "");
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
