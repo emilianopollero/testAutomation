@@ -1,6 +1,7 @@
 package SeleniumAutomation;
 
 
+import SeleniumAutomation.Utils.ConfigFileReader;
 import SeleniumAutomation.Utils.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -22,8 +23,9 @@ public class BaseTest {
     //This method calls the browser instance, deletes cookies, maximizes its window and sets the BasePage driver variable
     @BeforeMethod
     public void openBrowser() {
+        ConfigFileReader reader = new ConfigFileReader();
         Driver.getInstance();
-        Driver.getInstance().get("https://waesworks.bitbucket.io/");
+        Driver.getInstance().get(reader.getApplicationUrl());
         Driver.getInstance().manage().deleteAllCookies();
         Driver.getInstance().manage().window().maximize();
         BasePage.setDriver(Driver.getInstance());

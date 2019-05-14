@@ -5,6 +5,7 @@ import SeleniumAutomation.Enums.ECredentials;
 import SeleniumAutomation.Pages.HomePage;
 import SeleniumAutomation.Pages.LoginPage;
 import SeleniumAutomation.Pages.ProfilePage;
+import SeleniumAutomation.Utils.ConfigFileReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,6 +17,8 @@ public class LoginTest extends BaseTest {
 
     private SoftAssert softAssert = new SoftAssert();
 
+    private ConfigFileReader reader = new ConfigFileReader();
+
     //    This test verifies admin user can login and profile page for admin user is presented
     @Test(priority = 1, description = "UI: Validate admin user can login and proper profile page is shown")
     public void validAdminLoginTest() {
@@ -25,7 +28,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        ProfilePage profilePage = loginPage.logIn(ECredentials.ADMIN_USER.getValue(), ECredentials.ADMIN_USER_PASS.getValue());
+        ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER), reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
         System.out.println("Validating profile page for admin user");
         softAssert.assertEquals("Your Profile", getTitleText());
@@ -45,7 +48,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        ProfilePage profilePage = loginPage.logIn(ECredentials.DEV_USER.getValue(), ECredentials.DEV_USER_PASS.getValue());
+        ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.DEV_USER), reader.getCredentials(ECredentials.DEV_USER_PASS));
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
         System.out.println("Validating profile page for dev user");
         softAssert.assertEquals("How are you doing, Zuper Dooper Dev?", profilePage.getFirstProfileText());
@@ -63,7 +66,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
+        ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.TESTER_USER), reader.getCredentials(ECredentials.TESTER_USER_PASS));
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
         System.out.println("Validating profile page for tester user");
         softAssert.assertEquals("How are you doing, Al Skept-Cal Tester?", profilePage.getFirstProfileText());
@@ -80,7 +83,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        ProfilePage profilePage = loginPage.logIn(ECredentials.TESTER_USER.getValue(), ECredentials.TESTER_USER_PASS.getValue());
+        ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.TESTER_USER), reader.getCredentials(ECredentials.TESTER_USER_PASS));
         profilePage.clickLogout();
         Assert.assertEquals("Log In", getTitleText());
         System.out.println("User successfully logged out of the application");
@@ -95,7 +98,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn(ECredentials.TESTER_USER.getValue().toUpperCase(), ECredentials.TESTER_USER_PASS.getValue());
+        loginPage.logIn(reader.getCredentials(ECredentials.TESTER_USER).toUpperCase(), reader.getCredentials(ECredentials.TESTER_USER_PASS));
         Thread.sleep(1000);
         Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"), "Login failed with uppercase username");
     }
@@ -108,7 +111,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("seven", "hero");
+        loginPage.logIn("seven", reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();
@@ -134,7 +137,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("", "hero");
+        loginPage.logIn("", reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();
@@ -147,7 +150,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("admin", "");
+        loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER), "");
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();
@@ -173,7 +176,8 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("admin", "HERO");
+        loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS).toUpperCase());
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();
@@ -186,7 +190,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("admin ", "hero");
+        loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER) + " ", reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();
@@ -199,7 +203,7 @@ public class LoginTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
-        loginPage.logIn("admin", "hero ");
+        loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER), reader.getCredentials(ECredentials.ADMIN_USER_PASS) + " ");
         System.out.println("Validating that user has not been logged in");
         softAssert.assertEquals("Log In", getTitleText());
         softAssert.assertAll();

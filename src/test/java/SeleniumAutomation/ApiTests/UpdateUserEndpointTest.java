@@ -1,6 +1,8 @@
 package SeleniumAutomation.ApiTests;
 
 import SeleniumAutomation.Api.UserEndpoint;
+import SeleniumAutomation.Enums.ECredentials;
+import SeleniumAutomation.Utils.ConfigFileReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -10,6 +12,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UpdateUserEndpointTest {
+
+    ConfigFileReader reader = new ConfigFileReader();
 
     // This test calls the update endpoint with the different users, checks for a 200 response code and validates all values
     @Test(priority = 2, description = "API:  Validate that name can be updated")
@@ -23,7 +27,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setName("updated");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         UserEndpoint updatedUser = new UserEndpoint(response.jsonPath().get());
         System.out.println("Response is");
         response.prettyPrint();
@@ -42,7 +47,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setDateOfBirth("1999-06-18");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         UserEndpoint updatedUser = new UserEndpoint(response.jsonPath().get());
         System.out.println("Response is");
         response.prettyPrint();
@@ -61,7 +67,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setisAdmin(true);
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         UserEndpoint updatedUser = new UserEndpoint(response.jsonPath().get());
         System.out.println("Response is");
         response.prettyPrint();
@@ -80,7 +87,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setSuperpower("updated");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         UserEndpoint updatedUser = new UserEndpoint(response.jsonPath().get());
         System.out.println("Response is");
         response.prettyPrint();
@@ -99,7 +107,8 @@ public class UpdateUserEndpointTest {
         UserEndpoint.createUser(newUser);
         String oldPassword = "123456";
         newUser.setPassword("newPassword");
-        UserEndpoint.updateUser("admin", "hero", newUser);
+        UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         Assert.assertEquals(200, UserEndpoint.login(newUser.getUsername(), "newPassword").getStatusCode());
         Assert.assertNotEquals(newUser.getPassword(), oldPassword);
     }
@@ -115,7 +124,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setEmail("updated@email.com");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         UserEndpoint updatedUser = new UserEndpoint(response.jsonPath().get());
         System.out.println("Response is");
         response.prettyPrint();
@@ -135,7 +145,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setUsername("updated");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         Assert.assertTrue(400 <= response.getStatusCode());
         System.out.println("Response is");
         response.prettyPrint();
@@ -152,7 +163,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setId(UserEndpoint.getLastUserId() + 100);
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         Assert.assertTrue(400 <= response.getStatusCode());
         response.prettyPrint();
     }
@@ -168,7 +180,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setEmail("updated");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         Assert.assertTrue(400 <= response.getStatusCode(), "Update operation was successful with invalid email " +
                 "format with response code: " + response.getStatusCode());
     }
@@ -184,7 +197,8 @@ public class UpdateUserEndpointTest {
         newUser.setPassword("123456");
         UserEndpoint.createUser(newUser);
         newUser.setDateOfBirth("updated");
-        Response response = UserEndpoint.updateUser("admin", "hero", newUser);
+        Response response = UserEndpoint.updateUser(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS), newUser);
         Assert.assertTrue(400 <= response.getStatusCode());
         response.prettyPrint();
     }
@@ -231,7 +245,8 @@ public class UpdateUserEndpointTest {
         Assert.assertTrue(400 <= RestAssured.given().log().all()
                         .auth()
                         .preemptive()
-                        .basic("admin", "hero")
+                        .basic(reader.getCredentials(ECredentials.ADMIN_USER),
+                                reader.getCredentials(ECredentials.ADMIN_USER_PASS))
                         .body(createBody.toString())
                         .contentType(String.valueOf(ContentType.APPLICATION_JSON))
                         .when()

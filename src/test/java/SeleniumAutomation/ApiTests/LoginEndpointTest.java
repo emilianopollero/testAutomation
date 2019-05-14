@@ -1,6 +1,8 @@
 package SeleniumAutomation.ApiTests;
 
 import SeleniumAutomation.Api.UserEndpoint;
+import SeleniumAutomation.Enums.ECredentials;
+import SeleniumAutomation.Utils.ConfigFileReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -8,13 +10,16 @@ import org.testng.annotations.Test;
 
 public class LoginEndpointTest {
 
+    private ConfigFileReader reader = new ConfigFileReader();
+
     // This test calls the login api with the different users, checks for a 200 response code and validates all values
     @Test(priority = 2, description = "API: Validate user can successfully login")
     public void successfulLoginTest(){
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for admin user");
         System.out.println("----------------------------------------------------------------------");
-        Response response = UserEndpoint.login("admin", "hero");
+        Response response = UserEndpoint.login(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         Assert.assertEquals(200, response.getStatusCode());
         UserEndpoint adminLoginResponse = new UserEndpoint(response.jsonPath().get());
         Assert.assertEquals(adminLoginResponse.getId(), 1);
@@ -56,7 +61,8 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing login response for admin user with uppercase username");
         System.out.println("----------------------------------------------------------------------");
-        Response response = UserEndpoint.login("ADMIN", "hero");
+        Response response = UserEndpoint.login(reader.getCredentials(ECredentials.ADMIN_USER).toUpperCase(),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         Assert.assertEquals(200, response.getStatusCode());
         UserEndpoint adminLoginResponse = new UserEndpoint(response.jsonPath().get());
         Assert.assertEquals(adminLoginResponse.getId(), 1);
@@ -75,7 +81,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing invalid credentials");
         System.out.println("----------------------------------------------------------------------");
-        Response response = UserEndpoint.login("dev", "wizar");
+        Response response = UserEndpoint.login(reader.getCredentials(ECredentials.ADMIN_USER), "123456");
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
@@ -87,7 +93,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty username");
         System.out.println("----------------------------------------------------------------------");
-        Response response = UserEndpoint.login("", "hero");
+        Response response = UserEndpoint.login("", reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");
@@ -99,7 +105,7 @@ public class LoginEndpointTest {
         System.out.println("----------------------------------------------------------------------");
         System.out.println("Testing empty password");
         System.out.println("----------------------------------------------------------------------");
-        Response response = UserEndpoint.login("admin", "");
+        Response response = UserEndpoint.login(reader.getCredentials(ECredentials.ADMIN_USER), "");
         Assert.assertEquals(401, response.getStatusCode());
         Assert.assertEquals("Bad credentials", response.jsonPath().getString("message"));
         System.out.println("Response is: ");

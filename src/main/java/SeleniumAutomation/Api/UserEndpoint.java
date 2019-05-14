@@ -1,5 +1,7 @@
 package SeleniumAutomation.Api;
 
+import SeleniumAutomation.Enums.ECredentials;
+import SeleniumAutomation.Utils.ConfigFileReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -43,6 +45,8 @@ public class UserEndpoint {
         this.dateOfBirth = dateOfBirth;
         this.isAdmin = isAdmin;
     }
+
+    private static ConfigFileReader reader = new ConfigFileReader();
 
 //     Returns json representation of UserEndpoint object
     private static String getJson(UserEndpoint user) throws JsonProcessingException {
@@ -131,7 +135,8 @@ public class UserEndpoint {
 
 //     Calls the all users endpoint, gets the last user from the list and returns its int id
     public static int getLastUserId() {
-        ArrayList allUsers = UserEndpoint.getAllUsers("admin", "hero");
+        ArrayList allUsers = UserEndpoint.getAllUsers(reader.getCredentials(ECredentials.ADMIN_USER),
+                reader.getCredentials(ECredentials.ADMIN_USER_PASS));
         UserEndpoint lastUser = (UserEndpoint) allUsers.get(allUsers.size() - 1);
         return lastUser.getId();
     }
