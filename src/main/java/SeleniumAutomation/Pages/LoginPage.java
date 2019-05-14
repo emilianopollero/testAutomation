@@ -14,10 +14,6 @@ public class LoginPage extends BasePage {
     private WebElement passwordField;
     @FindBy(id = "login_button")
     private WebElement loginBtn;
-    @FindBy(css = "main h1")
-    private WebElement title;
-    @FindBy(css = "[class^='status-module--status__text']")
-    private WebElement statusTextBox;
 
 //    Login page constructor asserts page title is correct and url is correct
     public LoginPage() {

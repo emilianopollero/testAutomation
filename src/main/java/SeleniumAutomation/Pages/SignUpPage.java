@@ -36,7 +36,7 @@ public class SignUpPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getStatusText(){
+    public String getStatusText() {
         waitForElementToBeVisible(statusText);
         return statusText.getText();
     }
@@ -50,7 +50,7 @@ public class SignUpPage extends BasePage {
         enterName(name);
         enterEmail(email);
         selectDay(day);
-        selecMonth(month);
+        selectMonth(month);
         selectYear(year);
         submit();
         return new NewUserPage();
@@ -66,7 +66,7 @@ public class SignUpPage extends BasePage {
         enterName(name);
         enterEmail(email);
         selectDay(day);
-        selecMonth(month);
+        selectMonth(month);
         selectYear(year);
         submit();
         return new NewUserPage();
@@ -107,15 +107,14 @@ public class SignUpPage extends BasePage {
     }
 
     //         Selects month from month select dropdown
-    private void selecMonth(Month month) {
+    private void selectMonth(Month month) {
         Locale locale = Locale.ENGLISH;
         System.out.println("Selecting month: " + month.getDisplayName(TextStyle.FULL, locale));
         getSelectElement(calendarMonth).selectByValue(month.getDisplayName(TextStyle.FULL, locale));
     }
 
     //         Selects month from month select dropdown using a String month value
-    private void selecMonth(String month) {
-        Locale locale = Locale.ENGLISH;
+    private void selectMonth(String month) {
         System.out.println("Selecting month: " + month);
         getSelectElement(calendarMonth).selectByValue(month);
     }

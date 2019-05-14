@@ -49,7 +49,6 @@ public class TestReporter implements ITestListener {
                 String dest = System.getProperty("user.dir") + "/screenshots/" + result.getMethod().getMethodName() + ".png";
                 File target = new File(dest);
                 FileUtils.copyFile(src, target);
-//            test.log(Status.FAIL, "Screenshot").addScreenCaptureFromPath("C:\\testAutomation\\screenshots\\validUsernameInUppercaseLogin.jpg");
                 test.addScreenCaptureFromPath(dest);
             } catch (IOException e) {
                 e.printStackTrace();

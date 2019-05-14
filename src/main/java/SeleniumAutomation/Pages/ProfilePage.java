@@ -9,8 +9,6 @@ import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
 public class ProfilePage extends BasePage {
-    @FindBy(css = "main h1")
-    private WebElement title;
     @FindBy(css = "[class] p:nth-child(2)")
     private WebElement firstProfileText;
     @FindBy(css = "[class] p:nth-child(3)")
