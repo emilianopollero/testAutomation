@@ -69,7 +69,7 @@ public class Driver {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/chromedriver.exe");
+                        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/drivers/chromedriver");
                         driver = new ChromeDriver();
                         break;
                     case "headless":
