@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.time.Month;
 
+import static SeleniumAutomation.BasePage.getRandomNumber;
 import static SeleniumAutomation.BasePage.getTitleText;
 
 public class SignUpTest extends BaseTest {
@@ -21,8 +22,8 @@ public class SignUpTest extends BaseTest {
         System.out.println("----------------------------------------------------------------------");
         HomePage homePage = new HomePage();
         SignUpPage signUpPage = homePage.clickSignUp();
-        NewUserPage newUserPage = signUpPage.signUp("emiliano.pollero", "123456", "Emiliano",
-                "test@test.com", "19", Month.JUNE, "1982");
+        NewUserPage newUserPage = signUpPage.signUp(getRandomNumber() + "emiliano.pollero", "123456", "Emiliano",
+                getRandomNumber() + "test@test.com", "19", Month.JUNE, "1982");
         System.out.println("Validating profile page for new user");
         Assert.assertEquals(newUserPage.getWelcomeText(), "Welcome to your new profile page, " + "Emiliano!");
         System.out.println("Profile page for new user is correct");

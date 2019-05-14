@@ -97,7 +97,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = homePage.clickLogin();
         loginPage.logIn(ECredentials.TESTER_USER.getValue().toUpperCase(), ECredentials.TESTER_USER_PASS.getValue());
         Thread.sleep(1000);
-        Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("app/profile"), "Login failed with uppercase username");
     }
 
 //    These tests verify that the system handles invalid credentials properly

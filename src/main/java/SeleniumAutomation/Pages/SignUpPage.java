@@ -73,61 +73,61 @@ public class SignUpPage extends BasePage {
     }
 
     //         Clears username field and enters username
-    public void enterUsername(String username) {
+    private void enterUsername(String username) {
         System.out.println("Entering username: " + username);
         waitForElementToBeClickable(usernameField);
         enterText(usernameField, username);
     }
 
     //         Clears password field and enters password
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         System.out.println("Entering password: " + password);
         waitForElementToBeClickable(passwordField);
         enterText(passwordField, password);
     }
 
     //         Clears name field and enters username
-    public void enterName(String name) {
+    private void enterName(String name) {
         System.out.println("Entering name: " + name);
         waitForElementToBeClickable(nameField);
         enterText(nameField, name);
     }
 
     //         Clears email field and enters email
-    public void enterEmail(String email) {
+    private void enterEmail(String email) {
         System.out.println("Entering email: " + email);
         waitForElementToBeClickable(emailField);
         enterText(emailField, email);
     }
 
     //         Selects day from day select dropdown
-    public void selectDay(String day) {
+    private void selectDay(String day) {
         System.out.println("Selecting day: " + day);
         getSelectElement(calendarDay).selectByValue(day);
     }
 
     //         Selects month from month select dropdown
-    public void selecMonth(Month month) {
+    private void selecMonth(Month month) {
         Locale locale = Locale.ENGLISH;
         System.out.println("Selecting month: " + month.getDisplayName(TextStyle.FULL, locale));
         getSelectElement(calendarMonth).selectByValue(month.getDisplayName(TextStyle.FULL, locale));
     }
 
     //         Selects month from month select dropdown using a String month value
-    public void selecMonth(String month) {
+    private void selecMonth(String month) {
         Locale locale = Locale.ENGLISH;
         System.out.println("Selecting month: " + month);
         getSelectElement(calendarMonth).selectByValue(month);
     }
 
     //         Selects year from year select dropdown
-    public void selectYear(String year) {
+    private void selectYear(String year) {
         System.out.println("Selecting year: " + year);
         getSelectElement(calendarYear).selectByValue(year);
     }
 
     //         Clicks on the submit button
-    public void submit() {
+    private void submit() {
         waitForElementToBeClickable(submitBtn);
         scrollIntoElement(submitBtn);
         submitBtn.click();

@@ -4,7 +4,6 @@ import SeleniumAutomation.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 
@@ -18,8 +17,6 @@ public class HomePage extends BasePage {
 //    Home page constructor checks that the user is on the Home Page by asserting title and url
     public HomePage() {
         PageFactory.initElements(driver, this);
-        Assert.assertEquals(getTitleText(), "WAES Tester Assignment");
-        Assert.assertTrue(driver.getCurrentUrl().contains("waesworks.bitbucket.io"));
         System.out.println("Going to home page");
     }
 

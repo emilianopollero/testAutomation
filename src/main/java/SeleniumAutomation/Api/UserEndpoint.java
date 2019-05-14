@@ -45,7 +45,7 @@ public class UserEndpoint {
     }
 
 //     Returns json representation of UserEndpoint object
-    public static String getJson(UserEndpoint user) throws JsonProcessingException {
+    private static String getJson(UserEndpoint user) throws JsonProcessingException {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         return ow.writeValueAsString(user);
     }

@@ -9,6 +9,7 @@ For Linux/Mac, Chrome version 74.0.3729.6 is needed
 Example: `mvn clean test -Dbrowser=headless`
 
 Test report can be found under /target/extent-report/testReport.html
+Screenshots on test report only for UI tests failures.
 
 For debugging purposes, if you want to run this suite by running testng.xml file from within the IDE, you must uncomment
 line 10 <parameter name="browser" value="chrome"/> after debugging is done, for the maven command to pick the =Dbrowser tag

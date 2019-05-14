@@ -2,7 +2,7 @@
 
 <suite name="Suite1" verbose="1" >
     <listeners>
-        <listener class-name="SeleniumAutomation.BaseTest"/>
+        <listener class-name="SeleniumAutomation.Utils.TestReporter"/>
     </listeners>
     <test name="Regression">
         <!--<parameter name="browser" value="chrome"/>-->

@@ -4,7 +4,6 @@ import SeleniumAutomation.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
@@ -23,8 +22,6 @@ public class LoginPage extends BasePage {
 //    Login page constructor asserts page title is correct and url is correct
     public LoginPage() {
         PageFactory.initElements(driver, this);
-        Assert.assertEquals(getTitleText(), "Log In");
-        Assert.assertTrue(driver.getCurrentUrl().contains("app/login"));
     }
 
 //    Enters parametrized values username and password on username and password fields, clicks on login button and returns

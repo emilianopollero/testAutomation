@@ -2,7 +2,7 @@ package SeleniumAutomation.Utils;
 
 import java.util.Locale;
 
-    public final class OsCheck {
+    final class OsCheck {
         /**
          * types of Operating Systems
          */
@@ -10,9 +10,9 @@ import java.util.Locale;
             Windows, MacOS, Linux, Other
         }
 
-        protected static OSType detectedOS;
+        private static OSType detectedOS;
 
-        public static OSType getOperatingSystemType() {
+        static OSType getOperatingSystemType() {
             if (detectedOS == null) {
                 String OS = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
                 if ((OS.contains("mac")) || (OS.contains("darwin"))) {

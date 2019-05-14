@@ -17,7 +17,7 @@ public class BasePage {
     }
 
     // Clears input field and enters given String
-    public static void enterText(WebElement element, String text) {
+    protected static void enterText(WebElement element, String text) {
         element.clear();
         element.sendKeys(text);
     }
@@ -25,13 +25,13 @@ public class BasePage {
     // Returns a selenium Select object from a given WebElement, as PageFactory is not picking up Select objects for
     // initialization, one must initialize the Select as a WebElement on PageFactory, and then use this method to get
     // the Select implementation of it
-    public static Select getSelectElement(WebElement element) {
+    protected static Select getSelectElement(WebElement element) {
         return new Select(element);
     }
 
     // This is used when having issues with stale elements, if StaleElementReferenceException is thrown, it will try to
     // get the element again 4 times by using the given By and return a WebElement if successful.
-    public static WebElement returnNonStaleElement(By by) {
+    private static WebElement returnNonStaleElement(By by) {
         WebElement nonStaleElement = Driver.getInstance().findElement(by);
         int count = 0;
         try {
@@ -55,7 +55,7 @@ public class BasePage {
 
     // Useful for errors of type, "Element not clickable at point xxx, other element would receive the click",
     // use before the action that is presenting that said issue.
-    public static void scrollIntoElement(WebElement element) {
+    protected static void scrollIntoElement(WebElement element) {
         ((JavascriptExecutor) driver)
                 .executeScript("var rectSize = arguments[0].getBoundingClientRect();" +
                         "var elementTop = rectSize.top + window.pageYOffset;" +
