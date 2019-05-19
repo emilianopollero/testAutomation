@@ -1,13 +1,14 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
+import SeleniumAutomation.Interfaces.HeaderInterface;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage implements HeaderInterface {
     @FindBy(id = "username_input")
     private WebElement usernameField;
     @FindBy(id = "password_input")

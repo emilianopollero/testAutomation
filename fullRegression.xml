@@ -15,6 +15,7 @@
             <class name="SeleniumAutomation.UITests.DetailsPageTest"/>
             <class name="SeleniumAutomation.UITests.SignUpTest"/>
             <class name="SeleniumAutomation.UITests.LoginTest"/>
+            <class name="SeleniumAutomation.UITests.StatusBarTextTest"/>
             <class name="SeleniumAutomation.ApiTests.UpdateUserEndpointTest"/>
             <class name="SeleniumAutomation.ApiTests.SignUpEndpointTest"/>
             <class name="SeleniumAutomation.ApiTests.LoginEndpointTest"/>

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Api BE tests" verbose="1" >
+    <listeners>
+        <listener class-name="SeleniumAutomation.Utils.TestReporter"/>
+    </listeners>
+    <test name="BE API tests regression">
+        <classes>
+            <class name="SeleniumAutomation.ApiTests.DeleteUserTest"/>
+            <class name="SeleniumAutomation.ApiTests.UpdateUserEndpointTest"/>
+            <class name="SeleniumAutomation.ApiTests.SignUpEndpointTest"/>
+            <class name="SeleniumAutomation.ApiTests.LoginEndpointTest"/>
+            <class name="SeleniumAutomation.ApiTests.UserInformationEndpointTest"/>
+        </classes>
+    </test>
+</suite>

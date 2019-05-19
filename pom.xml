@@ -88,7 +88,15 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.0</version>
+                    <version>3.0.0-M3</version>
+                    <executions>
+                        <execution>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <systemProperties>
                             <property>
@@ -97,7 +105,9 @@
                             </property>
                         </systemProperties>
                         <suiteXmlFiles>
-                            <suiteXmlFile>testng.xml</suiteXmlFile>
+                            <suiteXmlFile>beTests.xml</suiteXmlFile>
+                            <suiteXmlFile>uiTests.xml</suiteXmlFile>
+                            <suiteXmlFile>fullRegression.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <includes>
                             <include>**/Test*.java</include>

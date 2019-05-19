@@ -1,6 +1,7 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
+import SeleniumAutomation.Interfaces.HeaderInterface;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +13,7 @@ import java.util.Locale;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
-public class SignUpPage extends BasePage {
+public class SignUpPage extends BasePage implements HeaderInterface {
     @FindBy(id = "username_input")
     private WebElement usernameField;
     @FindBy(id = "password_input")
@@ -29,16 +30,9 @@ public class SignUpPage extends BasePage {
     private WebElement calendarYear;
     @FindBy(id = "submit_button")
     private WebElement submitBtn;
-    @FindBy(css = "[class^='status-module--status__text']")
-    private WebElement statusText;
 
     public SignUpPage() {
         PageFactory.initElements(driver, this);
-    }
-
-    public String getStatusText() {
-        waitForElementToBeVisible(statusText);
-        return statusText.getText();
     }
 
     //    Signs up a new user, with all the required parameters and clicks on the submit button, and returns a new NewUserPage
