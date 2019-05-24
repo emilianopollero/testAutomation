@@ -1,13 +1,14 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
+import SeleniumAutomation.Interfaces.HeaderInterface;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 
-public class HomePage extends BasePage {
+public class HomePage extends BasePage implements HeaderInterface {
 
     @FindBy(id = "login_link")
     private static WebElement loginLink;

@@ -1,6 +1,7 @@
 package SeleniumAutomation.Pages;
 
 import SeleniumAutomation.BasePage;
+import SeleniumAutomation.Interfaces.HeaderInterface;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,17 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeClickable;
 import static SeleniumAutomation.Utils.WaitUtil.waitForElementToBeVisible;
 
-public class ProfilePage extends BasePage {
+public class ProfilePage extends BasePage implements HeaderInterface {
     @FindBy(css = "[class] p:nth-child(2)")
     private WebElement firstProfileText;
     @FindBy(css = "[class] p:nth-child(3)")
     private WebElement secondProfileText;
     @FindBy(css = "#users_list_table")
     private WebElement adminUsersTable;
-    @FindBy(css = "#details_link")
-    private WebElement detailsLink;
-    @FindBy(linkText = "log out")
-    private WebElement logOutLink;
 
     public ProfilePage() {
         PageFactory.initElements(driver, this);
@@ -30,13 +27,6 @@ public class ProfilePage extends BasePage {
         return firstProfileText.getText();
     }
 
-    //    Clicks logout link and returns a new LoginPage
-    public LoginPage clickLogout() {
-        waitForElementToBeClickable(logOutLink);
-        logOutLink.click();
-        return new LoginPage();
-    }
-
     //    Method to return String text of the second profile text
     public String getSecondProfileText() {
         waitForElementToBeVisible(secondProfileText);
@@ -46,12 +36,5 @@ public class ProfilePage extends BasePage {
     //    Returns boolean true or false if the admin users table is shown or not
     public boolean checkAdminTableIsDisplayed() {
         return adminUsersTable.isDisplayed();
-    }
-
-    //    Clicks on user details link and returns a new DetailsPage
-    public DetailsPage clickOnDetails() {
-        waitForElementToBeClickable(detailsLink);
-        detailsLink.click();
-        return new DetailsPage();
     }
 }

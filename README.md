@@ -1,5 +1,6 @@
 # testAutomation
-Suite can be ran by using mvn clean test on project root folder, -Dbrowser can be used to use options "edge" (Only on Windows 10 PC), "chrome" or "headless"
+Suite can be ran by using mvn clean test on project root folder, -Dbrowser can be used to use options "edge" (Only on Windows 10 PC),
+"chrome" or "headless", -Dsurefire.suiteXmlFiles=nameOfSuite.xml for selecting to run uiTests.xml, beTests.xml or fullRegression.xml
 
 Java version 1.8 is required to run this suite
 

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UI tests" verbose="1" >
+    <listeners>
+        <listener class-name="SeleniumAutomation.Utils.TestReporter"/>
+    </listeners>
+    <test name="UI tests">
+<!--        <parameter name="browser" value="chrome"/>-->
+        <classes>
+            <class name="SeleniumAutomation.UITests.DetailsPageTest"/>
+            <class name="SeleniumAutomation.UITests.SignUpTest"/>
+            <class name="SeleniumAutomation.UITests.LoginTest"/>
+            <class name="SeleniumAutomation.UITests.StatusBarTextTest"/>
+        </classes>
+    </test>
+</suite>

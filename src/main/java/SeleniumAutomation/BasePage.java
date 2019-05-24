@@ -31,7 +31,7 @@ public class BasePage {
 
     // This is used when having issues with stale elements, if StaleElementReferenceException is thrown, it will try to
     // get the element again 4 times by using the given By and return a WebElement if successful.
-    private static WebElement returnNonStaleElement(By by) {
+    protected static WebElement returnNonStaleElement(By by) {
         WebElement nonStaleElement = Driver.getInstance().findElement(by);
         int count = 0;
         try {

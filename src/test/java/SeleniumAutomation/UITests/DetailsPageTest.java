@@ -26,7 +26,7 @@ public class DetailsPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.ADMIN_USER), reader.getCredentials(ECredentials.ADMIN_USER_PASS));
-        DetailsPage detailsPage = profilePage.clickOnDetails();
+        DetailsPage detailsPage = profilePage.clickDetailsLink();
         System.out.println("Validating details page");
         softAssert.assertEquals("Your Details", getTitleText());
         softAssert.assertEquals("Name: Amazing Admin", detailsPage.getNameDetailsText());
@@ -42,7 +42,7 @@ public class DetailsPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.DEV_USER), reader.getCredentials(ECredentials.DEV_USER_PASS));
-        DetailsPage detailsPage = profilePage.clickOnDetails();
+        DetailsPage detailsPage = profilePage.clickDetailsLink();
         System.out.println("Validating details page");
         softAssert.assertEquals("Your Details", getTitleText());
         softAssert.assertEquals("Name: Zuper Dooper Dev", detailsPage.getNameDetailsText());
@@ -58,7 +58,7 @@ public class DetailsPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.clickLogin();
         ProfilePage profilePage = loginPage.logIn(reader.getCredentials(ECredentials.TESTER_USER), reader.getCredentials(ECredentials.TESTER_USER_PASS));
-        DetailsPage detailsPage = profilePage.clickOnDetails();
+        DetailsPage detailsPage = profilePage.clickDetailsLink();
         System.out.println("Validating details page");
         softAssert.assertEquals("Your Details", getTitleText());
         softAssert.assertEquals("Name: Al Skept-Cal Tester", detailsPage.getNameDetailsText());

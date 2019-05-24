@@ -240,4 +240,19 @@ public class SignUpTest extends BaseTest {
         Assert.assertEquals("This hero is already registered. Try another one!", signUpPage.getStatusText());
         System.out.println("User with incorrect email was not registered");
     }
+
+    @Test(priority = 1, description = "UI: Validate system rejects signUp with an invalid year")
+    public void invalidDateRangeSignUpTest() {
+        // UI: Validate system rejects signUp with an invalid year
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println("UI: Validate system rejects signUp with an invalid year");
+        System.out.println("----------------------------------------------------------------------");
+        HomePage homePage = new HomePage();
+        SignUpPage signUpPage = homePage.clickSignUp();
+        signUpPage.signUp("emiliano.alejandro", "123456", "Emiliano",
+                getRandomNumber() + "test@test.com", "19", Month.JUNE, "1900");
+        System.out.println("Validating user has not been signed");
+        Assert.assertEquals(getTitleText(), "Sign Up", "User was registered using DOB Year 1900");
+        System.out.println("User with invalid year was not registered");
+    }
 }
